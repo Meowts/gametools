@@ -1,0 +1,102 @@
+Screen.SpriteTest = function(game, player, controller){
+	this.game = game;
+	this._player = player;
+	this._controller = controller;
+
+	this.instructionText = null;
+	this.frameRateText = null;
+	this.movementEnabledText = null;
+
+	this.timer = null;
+
+	this.backBtn = null;
+	this.backBtnTxt = null;
+}
+
+Screen.SpriteTest.prototype = {
+	create : function(){
+		this._player.init(this.game.world.width/2, this.game.world.height/2);
+		
+		this._controller.toggleKey.onDown.add(this.toggleMovement, this);
+
+		this.instructionText = this.game.add.text(
+			Data[Global.CS].copy.instructions.x,
+			Data[Global.CS].copy.instructions.y,
+			Data[Global.CS].copy.instructions.text,
+			Data[Global.CS].copy.instructions.font 
+		);
+
+		this.timer = this.game.time.create(false);
+
+		this.frameRateText = this.game.add.text(40, 120, 'Framerate: ' + this._player.frameRate, {font: '16px Consolas'});
+		this.movementEnabledText = this.game.add.text(40, 135, 'Movement Enabled: ' + this._player.movementEnabledText, {font: '16px Consolas'});
+	
+		this.placeBackButton();
+	},
+
+	update : function(){
+		this._player.update(this._controller);
+		this.adjustFramerate();
+	},
+
+	render : function(){
+		this.frameRateText.setText('Framerate: ' + this._player.frameRate);
+		this.movementEnabledText.setText('Movement Enabled: ' + this._player.movementEnabled);
+	},
+
+	toggleMovement : function(){
+		this._player.movementEnabled = this._player.movementEnabled ? false : true;
+	},
+
+	adjustFramerate : function(){
+		if(this._controller.cursors.up.isDown || this._controller.cursors.down.isDown){
+
+			if(!this.timer.running){
+
+				this.changeFramerate();
+
+				this.timer.loop(100, this.changeFramerate, this);
+				this.timer.start();
+			}
+		}
+		else{
+			if(this.timer.running) this.timer.stop();
+		}
+	},
+
+	changeFramerate : function(){
+		if(this._controller.cursors.up.isDown){
+			this._player.frameRate ++;
+		}
+		else if(this._controller.cursors.down.isDown){
+			this._player.frameRate --;
+		}
+	},
+
+	placeBackButton : function(){
+		this.backBtn = this.game.add.button(
+			Data.Common.back.x, 
+			Data.Common.back.y, 
+			Data.Common.back.sprite,
+			Screen.switchScreen, 
+			this, 
+			0, 0, 1
+		);
+		this.backBtn.screen = 'MainMenu';
+		this.backBtn.anchor.setTo(0.5, 0.5);
+		this.backBtn.scale.setTo(0.5, 0.5);
+
+		var backBtnTxt = this.game.add.text(0, 0, 'Main Menu', {font: '22px Consolas'});
+		backBtnTxt.anchor.setTo(0.5, 0.5);
+		this.backBtn.addChild(backBtnTxt);
+	},
+
+	destroy : function(){
+		this._player.destroy();
+		this.instructionText.destroy(); 
+		this.frameRateText.destroy();
+		this.movementEnabledText.destroy()
+		this.timer.destroy();
+		this.backBtn.destroy();
+	}
+}
