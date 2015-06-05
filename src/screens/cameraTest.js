@@ -13,13 +13,11 @@ Screen.CameraTest.prototype = {
 		this.bg = this.game.add.sprite(0, 0, 'bg');
 		this.land = this.game.add.sprite(0, 440, 'land');
 
-		this.game.world.resize(this.bg.width, 780);
+		this.game.world.resize(this.bg.width, this.bg.height);
 
 		this._player.init(200, 600);
-		this.game.camera.follow(this._player.sprite);
 
 		this.placeBackButton();
-		this.backBtn.fixedToCamera = true;
 	},
 
 	update : function(){
@@ -40,6 +38,7 @@ Screen.CameraTest.prototype = {
 		this.backBtn.screen = 'MainMenu';
 		this.backBtn.anchor.setTo(0.5, 0.5);
 		this.backBtn.scale.setTo(0.5, 0.5);
+		this.backBtn.fixedToCamera = true;
 
 		var backBtnTxt = this.game.add.text(0, 0, 'Main Menu', {font: '22px Consolas'});
 		backBtnTxt.anchor.setTo(0.5, 0.5);

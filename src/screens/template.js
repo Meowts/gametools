@@ -27,6 +27,7 @@ Screen.MainMenu.prototype = {
 		this.backBtn.screen = 'MainMenu';
 		this.backBtn.anchor.setTo(0.5, 0.5);
 		this.backBtn.scale.setTo(0.5, 0.5);
+		this.backBtn.fixedToCamera = true;
 
 		var backBtnTxt = this.game.add.text(0, 0, 'Main Menu', {font: '22px Consolas'});
 		backBtnTxt.anchor.setTo(0.5, 0.5);

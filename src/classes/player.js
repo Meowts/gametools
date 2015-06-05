@@ -26,10 +26,13 @@ Player.prototype = {
 
 		this.game.physics.arcade.enable(this.sprite);
 
+		//this.sprite.body.setSize(this.sprite.width, 10, 0, this.sprite.height-10);
+
 		this.sprite.animations.add(this.walkingAnim);
 
+		this.game.camera.follow(this.sprite);
+
 		this.movementEnabled = Data[Global.CS].player.movementEnabled;
-		this.jumpEnabled = Data[Global.CS].player.jumpEnabled;
 	},
 
 	update : function(input){

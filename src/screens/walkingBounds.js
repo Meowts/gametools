@@ -3,15 +3,39 @@ Screen.WalkingBounds = function(game, player, controller){
 	this._player = player;
 	this._controller = controller;
 
+	this.bg = null;
+	this.floor = null;
+
 	this.backBtn = null;
+	this.test = null;
 }
 
 Screen.WalkingBounds.prototype = {
 	create : function(){
+		this.bg = this.game.add.sprite(0, 0, 'boundsBG');
+		this.game.physics.arcade.enable(this.bg);
+		this.bg.body.immovable = true;
+
+		this.test = this.game.add.sprite(170, 660, 'test');
+		this.game.physics.arcade.enable(this.test);
+		this.test.body.immovable = true;		
+		//this.floor = this.game.add.sprite(0, 580, 'boundsFloor');
+
+		this.game.world.resize(this.bg.width, 780);
+
+		this._player.init(115, 660);
+
 		this.placeBackButton();
 	},
 
-	update : function(){},
+	update : function(){
+		this._player.update(this._controller);
+		this.game.physics.arcade.collide(this._player.sprite, this.test, this.testFn, null, this);
+	},
+
+	testFn : function(){
+		debugger;
+	},
 
 	render : function(){},
 
@@ -27,6 +51,7 @@ Screen.WalkingBounds.prototype = {
 		this.backBtn.screen = 'MainMenu';
 		this.backBtn.anchor.setTo(0.5, 0.5);
 		this.backBtn.scale.setTo(0.5, 0.5);
+		this.backBtn.fixedToCamera = true;
 
 		var backBtnTxt = this.game.add.text(0, 0, 'Main Menu', {font: '22px Consolas'});
 		backBtnTxt.anchor.setTo(0.5, 0.5);
@@ -34,6 +59,8 @@ Screen.WalkingBounds.prototype = {
 	},
 
 	destroy : function(){
+		this._player.destroy();
+		this.bg.destroy();
 		this.backBtn.destroy();
 	}
 }

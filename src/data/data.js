@@ -30,3 +30,11 @@ Data.CameraTest = {
 		movementEnabled : true
 	}	
 }
+
+Data.WalkingBounds = {
+	player : {
+		spriteKey : 'walkingSprites',
+		frameRate : 10,
+		movementEnabled : true
+	}		
+}
