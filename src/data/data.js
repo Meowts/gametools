@@ -15,7 +15,7 @@ Data.SpriteTest = {
 
 	copy : {
 		instructions : {
-			text : 'Press up/down to adjust framerate,\nleft/right to animate,\nspace to toggle movement',
+			text : 'Press W/A to adjust framerate,\nleft/right/up/down to animate,\nspace to toggle movement',
 			font : {font: '16px consolas', fill: '#FFFFFF'},
 			x : 40,
 			y : 40

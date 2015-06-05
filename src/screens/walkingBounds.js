@@ -1,30 +1,17 @@
-Screen.CameraTest = function(game, player, controller){
+Screen.WalkingBounds = function(game, player, controller){
 	this.game = game;
 	this._player = player;
 	this._controller = controller;
 
-	this.bg = null;
-	this.land = null;
 	this.backBtn = null;
 }
 
-Screen.CameraTest.prototype = {
+Screen.WalkingBounds.prototype = {
 	create : function(){
-		this.bg = this.game.add.sprite(0, 0, 'bg');
-		this.land = this.game.add.sprite(0, 440, 'land');
-
-		this.game.world.resize(this.bg.width, 780);
-
-		this._player.init(200, 600);
-		this.game.camera.follow(this._player.sprite);
-
 		this.placeBackButton();
-		this.backBtn.fixedToCamera = true;
 	},
 
-	update : function(){
-		this._player.update(this._controller);
-	},
+	update : function(){},
 
 	render : function(){},
 
@@ -33,7 +20,7 @@ Screen.CameraTest.prototype = {
 			Data.Common.back.x, 
 			Data.Common.back.y, 
 			Data.Common.back.sprite,
-			Screen.switchScreen,
+			Screen.switchScreen, 
 			this, 
 			0, 0, 1
 		);
@@ -47,9 +34,6 @@ Screen.CameraTest.prototype = {
 	},
 
 	destroy : function(){
-		this._player.destroy();
-		this.bg.destroy();
-		this.land.destroy();
 		this.backBtn.destroy();
 	}
 }

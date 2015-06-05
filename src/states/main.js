@@ -9,7 +9,7 @@ Tools.Main.prototype = {
 	create : function(){
 		this.game.stage.backgroundColor = '#555555';
 
-		this.game.physics.startSystem(Phaser.Physics.P2JS);
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		this._controller = new Controller(this.game);
 		this._controller.init();
@@ -35,6 +35,8 @@ Tools.Main.prototype = {
 
 		this._screen.destroy();
 		delete this._screen;
+
+		this.game.world.resize(1024, 780);
 
 		this._screen = new Screen[Global.CS](this.game, this._player, this._controller);
 		this._screen.create();

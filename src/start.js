@@ -7,7 +7,8 @@ var Global = {
 	Screens : {
 		MainMenu : Screen.MainMenu,
 		SpriteTest : Screen.SpriteTest,
-		CameraTest : Screen.CameraTest
+		CameraTest : Screen.CameraTest,
+		WalkingBounds : Screen.WalkingBounds
 	}
 };
 

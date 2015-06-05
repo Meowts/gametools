@@ -16,8 +16,10 @@ Screen.SpriteTest = function(game, player, controller){
 Screen.SpriteTest.prototype = {
 	create : function(){
 		this._player.init(this.game.world.width/2, this.game.world.height/2);
-		
+
 		this._controller.toggleKey.onDown.add(this.toggleMovement, this);
+		// this._controller.adjustUp.onDown.add(this.adjustFramerate, this);
+		// this._controller.adjustDown.onDown.add(this.adjustFramerate, this);
 
 		this.instructionText = this.game.add.text(
 			Data[Global.CS].copy.instructions.x,
@@ -49,7 +51,8 @@ Screen.SpriteTest.prototype = {
 	},
 
 	adjustFramerate : function(){
-		if(this._controller.cursors.up.isDown || this._controller.cursors.down.isDown){
+
+		if(this.game.input.keyboard.isDown(Phaser.Keyboard.W) || this.game.input.keyboard.isDown(Phaser.Keyboard.S)){
 
 			if(!this.timer.running){
 
@@ -65,10 +68,10 @@ Screen.SpriteTest.prototype = {
 	},
 
 	changeFramerate : function(){
-		if(this._controller.cursors.up.isDown){
+		if(this.game.input.keyboard.isDown(Phaser.Keyboard.W)){
 			this._player.frameRate ++;
 		}
-		else if(this._controller.cursors.down.isDown){
+		else if(this.game.input.keyboard.isDown(Phaser.Keyboard.S)){
 			this._player.frameRate --;
 		}
 	},
