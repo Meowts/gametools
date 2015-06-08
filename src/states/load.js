@@ -38,6 +38,10 @@ Tools.Load.prototype = {
 		this.game.load.image('boundsBG', '/assets/boundsBG.png');
 		this.game.load.image('boundsFloor', '/assets/boundsFloor.png');
 
+		this.game.load.spritesheet('menu-top', '/assets/menu-top.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-mid', '/assets/menu-mid.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-bottom', '/assets/menu-bottom.png', 150, 30, 2);
+
 		this.game.load.image('test', '/assets/test.png');
 	},
 

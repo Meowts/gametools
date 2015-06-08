@@ -11,3 +11,16 @@ var Screen = {
 		Global.switchScreen = true;
 	}
 }
+
+//Misc helper functions
+var GFN = {
+	count : function(obj){
+		var total = 0;
+		for (var k in obj) {
+		    if (obj.hasOwnProperty(k)) {
+		       ++total;
+		    }
+		}
+		return total;
+	}
+}

@@ -8,7 +8,8 @@ var Global = {
 		MainMenu : Screen.MainMenu,
 		SpriteTest : Screen.SpriteTest,
 		CameraTest : Screen.CameraTest,
-		WalkingBounds : Screen.WalkingBounds
+		WalkingBounds : Screen.WalkingBounds,
+		Menu : Screen.Menu
 	}
 };
 
