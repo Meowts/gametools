@@ -6,19 +6,35 @@
 *
 */
 
-var Menu = function(game){
+var Menu = function(game, player){
 	this.game = game;
+	this._player = player;
 
 	this.layer = 'main';
-	this.gfx = null;
+
+	this.topSprite = 'menu-top';
+	this.midSprite = 'menu-mid';
+	this.bottomSprite = 'menu-bottom';
 	this.menuGrp = null;
 
 	this.menuFont = {font: '16px Consolas'};
 }
 
 Menu.prototype = {
-	create : function(){
-		this.textGrp = this.game.add.group();
+
+	composeMenuOptions : function(){
+		var inventory = this._player.inventory.items;
+		var spells = this._player.spells.availableSpells;
+		var options = {
+			option1 : 'option1',
+			option2 : 'option2',
+			option3 : 'option3',
+			option4 : 'option4'
+		}
+
+		Data.Menu.inventory = inventory;
+		Data.Menu.spells = spells;
+		Data.Menu.options = options;
 	},
 
 	drawMenu : function(){
@@ -33,9 +49,11 @@ Menu.prototype = {
 		
 		var x = 1;
 		for(var item in Data.Menu[this.layer]){
-			var buttonSprite = 'menu-mid';
-			if(x === 1) buttonSprite = 'menu-top';
-			else if(x === totalItems) buttonSprite = 'menu-bottom';
+			//Menu seperated into three sprites - top, mid, bottom - take the right sprite
+			//for the right item placement
+			var buttonSprite = this.midSprite;
+			if(x === 1) buttonSprite = this.topSprite;
+			else if(x === totalItems) buttonSprite = this.bottomSprite;
 
 			var button = this.game.add.button(startX, startY, buttonSprite, 
 				this.switchLayer,
@@ -70,32 +88,5 @@ Data.Menu = {
 		inventory : 'inventory',
 		spells : 'spells',
 		options : 'options'
-	},
-
-	inventory : {
-		item1 : 'item1',
-		item2 : 'item2',
-		item3 : 'item3',
-		item4 : 'item4',
-		item5 : 'item5',
-		item6 : 'item6',
-		back : 'main'
-	},
-
-	spells : {
-		spell1 : 'spell1',
-		spell2 : 'spell2',
-		spell3 : 'spell3',
-		spell4 : 'spell4',
-		spell5 : 'spell5',
-		back : 'main'
-	},
-
-	options : {
-		option1 : 'option1',
-		option2 : 'option2',
-		option3 : 'option3',
-		option4 : 'option4',
-		back : 'main'
 	}
 }

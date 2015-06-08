@@ -7,6 +7,9 @@
 var Player = function(game){
 	this.game = game;
 
+	this.inventory = null;
+	this.spells = null;
+
 	this.sprite = null;
 
 	this.movementEnabled = null;
@@ -22,19 +25,30 @@ var Player = function(game){
 
 Player.prototype = {
 	init : function(x, y){
-		this.sprite = this.game.add.sprite(x, y, Data[Global.CS].player.spriteKey);
+		//Give player inventory
+		this.inventory = new Inventory(this.game, Data.Player.items);
+
+		//Give player spells
+		this.spells = new Spell(this.game, Data.Player.spells);
+
+		//Place sprite
+		this.sprite = this.game.add.sprite(x, y, Data.Player.spriteKey);
 		this.sprite.anchor.setTo(0.5, 0.5);
 
+		//Enable physics body, set bounding box
 		this.game.physics.arcade.enable(this.sprite);
 		this.sprite.body.collideWorldBounds = true;
-
 		this.sprite.body.setSize(this.sprite.width-30, 10, 0, this.sprite.height-65);
 
+		//Add animations
 		this.sprite.animations.add(this.walkingAnim);
 
+		//Set camera follow
 		this.game.camera.follow(this.sprite);
 
-		this.movementEnabled = Data[Global.CS].player.movementEnabled;
+		//Movement enabled
+		this.movementEnabled = Data.Player.movementEnabled;
+		if(Global.CS === 'SpriteTest') this.movementEnabled = false;
 	},
 
 	update : function(input){
