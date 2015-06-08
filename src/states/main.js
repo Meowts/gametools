@@ -16,8 +16,7 @@ Tools.Main.prototype = {
 
 		this._player = new Player(this.game);
 
-		this._screen = new Screen[Global.CS](this.game, this._player, this._controller);
-		this._screen.create();
+		this.switchScreen();
 	},
 
 	update : function(){
@@ -33,8 +32,10 @@ Tools.Main.prototype = {
 	switchScreen : function(){
 		Global.switchScreen = false;
 
-		this._screen.destroy();
-		delete this._screen;
+		if(this._screen !== null){
+			this._screen.destroy();
+			delete this._screen;
+		}
 
 		this.game.world.resize(1024, 780);
 

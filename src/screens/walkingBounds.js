@@ -14,12 +14,9 @@ Screen.WalkingBounds.prototype = {
 	create : function(){
 		this.bg = this.game.add.sprite(0, 0, 'boundsBG');
 		this.game.physics.arcade.enable(this.bg);
-		this.bg.body.immovable = true;
-
-		this.test = this.game.add.sprite(170, 660, 'test');
-		this.game.physics.arcade.enable(this.test);
-		this.test.body.immovable = true;		
-		//this.floor = this.game.add.sprite(0, 580, 'boundsFloor');
+		this.bg.body.immovable = true;	
+			
+		this.floor = this.game.add.sprite(0, 580, 'boundsFloor');
 
 		this.game.world.resize(this.bg.width, 780);
 
@@ -30,11 +27,9 @@ Screen.WalkingBounds.prototype = {
 
 	update : function(){
 		this._player.update(this._controller);
-		this.game.physics.arcade.collide(this._player.sprite, this.test, this.testFn, null, this);
-	},
 
-	testFn : function(){
-		debugger;
+		this.game.physics.arcade.collide(this._player.sprite, this.bg,
+			function(){}, null, this);
 	},
 
 	render : function(){},
