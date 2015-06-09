@@ -3,7 +3,7 @@ Screen.Menu = function(game, player, controller){
 	this._player = player;
 	this._controller = controller;
 
-	this.menu = null;
+	this._actionMenu = null;
 
 	this.backBtn = null;
 }
@@ -11,6 +11,9 @@ Screen.Menu = function(game, player, controller){
 Screen.Menu.prototype = {
 	create : function(){
 		this._player.init(300, 300);
+
+		this._actionMenu = new ActionMenu(this.game);
+		this._actionMenu.drawMenu();
 
 		this.placeBackButton();
 	},
@@ -22,7 +25,7 @@ Screen.Menu.prototype = {
 	placeBackButton : function(){
 		this.backBtn = this.game.add.button(
 			Data.Common.back.x+40, 
-			Data.Common.back.y, 
+			Data.Common.back.y+70, 
 			Data.Common.back.sprite,
 			Screen.switchScreen, 
 			this, 

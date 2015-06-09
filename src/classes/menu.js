@@ -55,7 +55,7 @@ Menu.prototype = {
 
 		//Button positioning
 		var startX = this.game.width - 200;
-		var startY = 50;
+		var startY = 120;
 		var incrementY = 30;
 
 		//If it's not the main menu, add a back button

@@ -9,6 +9,7 @@ var Controller = function(game, player){
 	this._player = player;
 
 	this.keyboard = null;
+	this.mouse = null;
 
 	this.controls = {
 		moveUp : Phaser.Keyboard.UP,
@@ -27,6 +28,7 @@ var Controller = function(game, player){
 Controller.prototype = {
 	init : function(){
 		this.keyboard = this.game.input.keyboard;
+		this.mouse = this.game.input.mouse;
 
 		this.keys.upKey = this.keyboard.addKey(this.controls.moveUp);
 		this.keys.downKey = this.keyboard.addKey(this.controls.moveDown);

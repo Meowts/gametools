@@ -3,6 +3,27 @@ Data.Common = {
 		sprite : 'button',
 		x : 940,
 		y : 60		
+	},
+
+	actionMenu : {
+		use : {
+			sprite : 'am-use'
+		},
+		talk : {
+			sprite : 'am-talk'
+		},
+		see : {
+			sprite : 'am-see'
+		},
+		spell : {
+			sprite : 'am-spell'
+		},
+		item : {
+			sprite : 'am-item'
+		},
+		menu : {
+			sprite : 'am-menu'
+		},
 	}
 }
 

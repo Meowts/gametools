@@ -32,15 +32,31 @@ Tools.Load.prototype = {
 
 		this.game.load.spritesheet('button', '/assets/button.png', 150, 75, 2);
 
+		//Side menu
+		this.game.load.spritesheet('menu-top', '/assets/menu-top.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-mid', '/assets/menu-mid.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-bottom', '/assets/menu-bottom.png', 150, 30, 2);
+
+		//Action menu
+		this.game.load.image('am-base', '/assets/amBase.png');
+		this.game.load.spritesheet('am-use', '/assets/amUse.png', 170, 100, 2);
+		this.game.load.spritesheet('am-talk', '/assets/amTalk.png', 170, 100, 2);
+		this.game.load.spritesheet('am-see', '/assets/amSee.png', 170, 100, 2);
+		this.game.load.image('am-spell', '/assets/amSpell.png');
+		this.game.load.image('am-item', '/assets/amItem.png');
+		this.game.load.image('am-menu', '/assets/amMenu.png');
+
+		//Action icons
+		this.game.load.image('hamFist', '/assets/hamFist.png');
+		this.game.load.image('bubs', '/assets/bubs.png');
+		this.game.load.image('peeper', '/assets/peeper.png');
+
+		//Test sprites
 		this.game.load.image('bg', '/assets/bg.png');
 		this.game.load.image('land', '/assets/land.png');
 
 		this.game.load.image('boundsBG', '/assets/boundsBG.png');
 		this.game.load.image('boundsFloor', '/assets/boundsFloor.png');
-
-		this.game.load.spritesheet('menu-top', '/assets/menu-top.png', 150, 30, 2);
-		this.game.load.spritesheet('menu-mid', '/assets/menu-mid.png', 150, 30, 2);
-		this.game.load.spritesheet('menu-bottom', '/assets/menu-bottom.png', 150, 30, 2);
 
 		this.game.load.image('test', '/assets/test.png');
 	},
