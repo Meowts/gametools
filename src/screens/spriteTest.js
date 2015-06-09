@@ -17,10 +17,6 @@ Screen.SpriteTest.prototype = {
 	create : function(){
 		this._player.init(this.game.world.width/2, this.game.world.height/2);
 
-		this._controller.toggleKey.onDown.add(this.toggleMovement, this);
-		// this._controller.adjustUp.onDown.add(this.adjustFramerate, this);
-		// this._controller.adjustDown.onDown.add(this.adjustFramerate, this);
-
 		this.instructionText = this.game.add.text(
 			Data[Global.CS].copy.instructions.x,
 			Data[Global.CS].copy.instructions.y,
@@ -31,7 +27,6 @@ Screen.SpriteTest.prototype = {
 		this.timer = this.game.time.create(false);
 
 		this.frameRateText = this.game.add.text(40, 120, 'Framerate: ' + this._player.frameRate, {font: '16px Consolas'});
-		this.movementEnabledText = this.game.add.text(40, 135, 'Movement Enabled: ' + this._player.movementEnabledText, {font: '16px Consolas'});
 	
 		this.placeBackButton();
 	},
@@ -43,11 +38,6 @@ Screen.SpriteTest.prototype = {
 
 	render : function(){
 		this.frameRateText.setText('Framerate: ' + this._player.frameRate);
-		this.movementEnabledText.setText('Movement Enabled: ' + this._player.movementEnabled);
-	},
-
-	toggleMovement : function(){
-		this._player.movementEnabled = this._player.movementEnabled ? false : true;
 	},
 
 	adjustFramerate : function(){
@@ -98,7 +88,6 @@ Screen.SpriteTest.prototype = {
 		this._player.destroy();
 		this.instructionText.destroy(); 
 		this.frameRateText.destroy();
-		this.movementEnabledText.destroy()
 		this.timer.destroy();
 		this.backBtn.destroy();
 	}

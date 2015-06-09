@@ -47,7 +47,7 @@ Menu.prototype = {
 	},
 
 	drawMenu : function(){
-		this.destroy(this);
+		this.destroy();
 		this.menuGrp = this.game.add.group();
 
 		//Get number of menu items
@@ -121,10 +121,16 @@ Menu.prototype = {
 	},
 
 	exitMenu : function(context){
-		if(context.menuGrp !== null) context.menuGrp.destroy();
+		if(context.menuGrp !== null){
+			context.menuGrp.destroy();
+			context.menuGrp = null;
+		}
 	},
 
 	destroy : function(){
-		if(this.menuGrp !== null) this.menuGrp.destroy();
+		if(this.menuGrp !== null){
+			this.menuGrp.destroy();
+			this.menuGrp = null;
+		} 
 	}
 }

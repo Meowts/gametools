@@ -1,7 +1,7 @@
-//Initialize Phaser game object
-var game = new Phaser.Game(1024, 780, Phaser.AUTO, 'main');
-
 var Global = {
+	initWidth : 1024,
+	initHeight : 780,
+
 	//Current Screen - default 'MainMenu'
 	CS : 'MainMenu',
 
@@ -17,6 +17,9 @@ var Global = {
 		Menu : Screen.Menu
 	}
 };
+
+//Initialize Phaser game object
+var game = new Phaser.Game(Global.initWidth, Global.initHeight, Phaser.AUTO, 'main');
 
 //Add available states to game
 game.state.add('Load', Tools.Load);

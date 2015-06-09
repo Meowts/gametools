@@ -7,30 +7,21 @@
 var Player = function(game){
 	this.game = game;
 
-	this.inventory = null;
-	this.spells = null;
+	this.inventory = new Inventory(this.game, Data.Player.items);
+	this.spells = new Spell(this.game, Data.Player.spells);
+	this._menu = new Menu(this.game, this);
 
 	this.sprite = null;
 
-	this.movementEnabled = null;
-
-	this.isWalkingH = false;
-	this.isWalkingV = false;
+	this.inputEnabled = true;
 
 	this.walkingAnim = 'walkingAnimation';
-
 	this.frameRate = 10;
 	this.walkSpeed = 5;
 }
 
 Player.prototype = {
 	init : function(x, y){
-		//Give player inventory
-		this.inventory = new Inventory(this.game, Data.Player.items);
-
-		//Give player spells
-		this.spells = new Spell(this.game, Data.Player.spells);
-
 		//Place sprite
 		this.sprite = this.game.add.sprite(x, y, Data.Player.spriteKey);
 		this.sprite.anchor.setTo(0.5, 0.5);
@@ -45,56 +36,69 @@ Player.prototype = {
 
 		//Set camera follow
 		this.game.camera.follow(this.sprite);
-
-		//Movement enabled
-		this.movementEnabled = Data.Player.movementEnabled;
-		if(Global.CS === 'SpriteTest') this.movementEnabled = false;
 	},
 
 	update : function(input){
-		this.move(input);
+		if(this.inputEnabled) input.handleInput();
 	},
 
-	move : function(input){
-			
-		//Left/Right
-		if(input.cursors.left.isDown || input.cursors.right.isDown){
-			if(input.cursors.left.isDown){
-				if(this.sprite.scale.x > 0) this.sprite.scale.x = -1;
-				if(this.movementEnabled) this.sprite.body.x -= this.walkSpeed;
-			}
-			else{
-				if(this.sprite.scale.x < 0) this.sprite.scale.x = 1;
-				if(this.movementEnabled) this.sprite.body.x += this.walkSpeed;
-			}
-			this.isWalkingH = true;
-		}
-		else this.isWalkingH = false;
+	/*
+	*
+	*	Movement
+	*
+	*/
 
-		//Up/Down
-		if(input.cursors.up.isDown || input.cursors.down.isDown){
-			if(input.cursors.up.isDown){
-				if(this.movementEnabled) this.sprite.body.y -= this.walkSpeed;
-			}
-			else{
-				if(this.movementEnabled) this.sprite.body.y += this.walkSpeed;
-			}
-			this.isWalkingV = true;
-		}
-		else this.isWalkingV = false;
-
-		if(this.isWalkingH || this.isWalkingV){
-			if(!this.sprite.animations.currentAnim.isPlaying) 
-				this.sprite.animations.play(this.walkingAnim, this.frameRate, true);			
-		}
-		else{
-			if(this.sprite.body.velocity.x != 0 || this.sprite.body.velocity.y != 0) this.sprite.body.setZeroVelocity();
-			if(this.sprite.animations.currentAnim.isPlaying) this.sprite.animations.stop();
-			if(this.sprite.frame != 0) this.sprite.frame = 0;
-		}
-
-
+	moveUp : function(){
+		this.sprite.body.y -= this.walkSpeed;
+		this.startWalking();
 	},
+
+	moveDown : function(){
+		this.sprite.body.y += this.walkSpeed;
+		this.startWalking();
+	},
+
+	moveLeft : function(){
+		if(this.sprite.scale.x > 0) this.sprite.scale.x = -1;
+		this.sprite.body.x -= this.walkSpeed;
+		this.startWalking();
+	},
+
+	moveRight : function(){
+		if(this.sprite.scale.x < 0) this.sprite.scale.x = 1;
+		this.sprite.body.x += this.walkSpeed;	
+		this.startWalking();
+	},
+
+	startWalking : function(){
+		if(!this.sprite.animations.currentAnim.isPlaying){
+			this.sprite.animations.play(this.walkingAnim, this.frameRate, true);
+		}
+	},
+
+	stopWalking : function(){
+		if(this.sprite.animations.currentAnim.isPlaying) this.sprite.animations.stop();
+		if(this.sprite.frame != 0) this.sprite.frame = 0;
+	},
+
+	/*
+	*
+	*	Toggle
+	*
+	*/
+
+	toggleMenu : function(){
+		if(this._menu.menuGrp === null){
+			this._menu.drawMenu();
+		}
+		else this._menu.destroy();
+	},
+
+	/*
+	*
+	*	Deeestroooooybasdgasdgsld
+	*
+	*/
 
 	destroy : function(){
 		this.sprite.destroy();

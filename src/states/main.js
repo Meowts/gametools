@@ -2,6 +2,7 @@ Tools.Main = function(game){
 	this.game = game;
 	this._controller = null;
 	this._player = null;
+	this._menu = null;
 	this._screen = null;
 }
 
@@ -11,10 +12,12 @@ Tools.Main.prototype = {
 
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-		this._controller = new Controller(this.game);
+		this._player = new Player(this.game);
+
+		this._controller = new Controller(this.game, this._player);
 		this._controller.init();
 
-		this._player = new Player(this.game);
+		this._player._menu.composeMenuOptions();
 
 		this.switchScreen();
 	},
@@ -37,8 +40,14 @@ Tools.Main.prototype = {
 			delete this._screen;
 		}
 
-		this.game.world.resize(1024, 780);
+		//Set the screen back to default size
+		this.game.world.resize(Global.initWidth, Global.initHeight);
 
+		//Enable/Disable input for the screen
+		this._controller.keyboard.enabled = Data[Global.CS].keyboardEnabled;
+		//Mouse Input when the time comes
+
+		//Set screen
 		this._screen = new Screen[Global.CS](this.game, this._player, this._controller);
 		this._screen.create();
 	}
