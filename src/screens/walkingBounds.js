@@ -26,7 +26,7 @@ Screen.WalkingBounds.prototype = {
 	},
 
 	update : function(){
-		this._player.update(this._controller);
+		this._player.update();
 
 		this.game.physics.arcade.collide(this._player.sprite, this.bg,
 			function(){}, null, this);

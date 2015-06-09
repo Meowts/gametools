@@ -8,8 +8,8 @@ var Controller = function(game, player){
 	this.game = game;
 	this._player = player;
 
+	//Keyboard
 	this.keyboard = null;
-	this.mouse = null;
 
 	this.controls = {
 		moveUp : Phaser.Keyboard.UP,
@@ -23,9 +23,28 @@ var Controller = function(game, player){
 	}
 
 	this.keys = {};
+
+	//Mouse
+	this.mouse = null;
+
+	this.cursor = null;
+
+	this.currentCursor = 'hamFist';
+
+	this.cursors = {
+		use : 'hamFist',
+		talk : 'bubs',
+		see : 'peeper'
+	}
 }
 
 Controller.prototype = {
+
+	/*
+	*
+	*	Keyboard
+	*
+	*/
 	init : function(){
 		this.keyboard = this.game.input.keyboard;
 		this.mouse = this.game.input.mouse;
@@ -73,4 +92,10 @@ Controller.prototype = {
 		this.controls[control] = this.getKey();
 		this.keyboard.onDownCallback = null;
 	}
+
+	/*
+	*
+	*	Mouse
+	*
+	*/
 }

@@ -1,5 +1,6 @@
-var ActionMenu = function(game){
+var ActionMenu = function(game, controller){
 	this.game = game;
+	this._controller = controller;
 
 	this.sp_base = 'am-base';
 	this.sp_use = 'am-use';
@@ -39,6 +40,14 @@ ActionMenu.prototype = {
 		this.btn_item = this.game.add.button(this.btn_spell.x+lgBtnWidth, 0, Data.Common.actionMenu.item.sprite,this.switchAction, this, 0, 0, 0);
 
 		this.btn_menu = this.game.add.button(this.btn_item.x+lgBtnWidth, 0, Data.Common.actionMenu.menu.sprite,this.switchAction, this, 0, 0, 0);
+	
+		this.amGrp.add(this.sp_base);
+		this.amGrp.add(this.btn_use);
+		this.amGrp.add(this.btn_talk);
+		this.amGrp.add(this.btn_see);
+		this.amGrp.add(this.btn_spell);
+		this.amGrp.add(this.btn_item);
+		this.amGrp.add(this.btn_menu);
 	},
 
 	switchAction : function(){

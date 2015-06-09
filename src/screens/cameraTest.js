@@ -21,7 +21,7 @@ Screen.CameraTest.prototype = {
 	},
 
 	update : function(){
-		this._player.update(this._controller);
+		this._player.update();
 	},
 
 	render : function(){},
