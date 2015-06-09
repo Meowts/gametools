@@ -11,9 +11,6 @@ Screen.Menu = function(game, player, controller){
 Screen.Menu.prototype = {
 	create : function(){
 		this._player.init(300, 300);
-		// this.menu = new Menu(this.game, this._player);
-		// this.menu.composeMenuOptions();
-		// this.menu.drawMenu();
 
 		this.placeBackButton();
 	},
@@ -42,7 +39,6 @@ Screen.Menu.prototype = {
 	},
 
 	destroy : function(){
-		this.menu.destroy();
 		this._player.destroy();
 		this.backBtn.destroy();
 	}

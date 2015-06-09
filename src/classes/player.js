@@ -7,8 +7,8 @@
 var Player = function(game){
 	this.game = game;
 
-	this.inventory = new Inventory(this.game, Data.Player.items);
-	this.spells = new Spell(this.game, Data.Player.spells);
+	this.inventory = new Inventory(this.game);
+	this.spells = new Spell(this.game);
 	this._menu = new Menu(this.game, this);
 
 	this.sprite = null;

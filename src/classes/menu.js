@@ -66,8 +66,6 @@ Menu.prototype = {
 
 		var x = 1;
 		for(var item in this.MenuList[this.action]){
-			//Menu seperated into three sprites - top, mid, bottom - take the right sprite
-			//for the right item placement
 			var section = 'mid';
 			if(x === 1 && this.action === 'main') section = 'top';
 			else if(x === totalItems) section = 'bottom';
@@ -77,11 +75,15 @@ Menu.prototype = {
 			startY += incrementY;
 			x ++;
 		}
+
+		//So that it always apppears on screen
+		this.menuGrp.fixedToCamera = true;
 	},
 
 	addButton : function(x, y, title, section, action){
 		var buttonSprite;
-
+		//Menu seperated into three sprites - top, mid, bottom - take the right sprite
+		//for the right item placement
 		switch(section){
 			case 'top' : 
 				buttonSprite = this.topSprite;

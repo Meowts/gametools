@@ -1,7 +1,15 @@
-var Inventory = function(game, items){
+var Inventory = function(game){
 	this.game = game;
 
-	this.items = items;
+	//Default player inventory
+	this.items = {
+		item1 : 'item1',
+		item2 : 'item2',
+		item3 : 'item3',
+		item4 : 'item4',
+		item5 : 'item5',
+		item6 : 'item6'
+	};
 
 	this.currentlySelected = null;
 }
@@ -9,6 +17,14 @@ var Inventory = function(game, items){
 Inventory.prototype = {
 	setItems : function(items){
 		this.items = items;
+	},
+
+	acquire : function(item){
+		this.items[item] = item;
+	},
+
+	throwAway : function(item){
+		delete this.items[item];
 	},
 
 	selectItem : function(item){
