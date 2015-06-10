@@ -1,18 +1,59 @@
 var ActionMenu = function(game){
 	this.game = game;
 
-	this.sp_base = 'am-base';
-	this.sp_use = 'am-use';
-	this.sp_talk = 'am-talk';
-	this.sp_see = 'am-see';
-	this.sp_spell = 'am-spell';
-	this.sp_item = 'am-item';
-	this.sp_menu = 'am-menu';
+	this.baseSprite = 'am-base';
 
-	this.btn_base = null;
-	this.btn_use = null;
-	this.btn_talk = null;
-	this.btn_see = null;
+	this.use = null;
+	this.talk = null;
+	this.see = null;
+	this.spell = null;
+	this.item = null;
+	this.menu = null;
+
+	this.offsetX = {
+		sm : 170,
+		lg : 210
+	}
+
+	this.buttons = {
+		use : {
+			sprite : 'am-use',
+			offsetX : 0,
+			obj : 'action',
+			fn : 'toggleUse'
+		},
+		talk : {
+			sprite : 'am-talk',
+			offsetX : 'sm',
+			obj : 'action',
+			fn : 'toggleTalk'
+		},
+		see : {
+			sprite : 'am-see',
+			offsetX : 'sm',
+			obj : 'action',
+			fn : 'toggleSee'
+		},
+		spell : {
+			sprite : 'am-spell',
+			offsetX : 'sm',
+			obj : 'action',
+			fn : 'toggleSpell'
+		},
+		item : {
+			sprite : 'am-item',
+			offsetX : 'lg',
+			obj : 'action',
+			fn : 'toggleItem'
+		},
+		menu : {
+			sprite : 'am-menu',
+			offsetX : 'lg',
+			obj : 'player',
+			fn : 'toggleMenu'
+		},
+	}
+
 	this.amGrp = null;
 }
 
@@ -21,73 +62,31 @@ ActionMenu.prototype = {
 	init : function(){
 		this.amGrp = this.game.add.group();
 
-		var smBtnWidth = 170;
-		var lgBtnWidth = 210;
-
 		//Menu BG
-		this.sp_base = this.game.add.sprite(0, 0, this.sp_base);
+		var base = this.game.add.sprite(0, 0, this.baseSprite);
+		this.amGrp.add(base);
 
-		//Use button
-		this.btn_use = this.game.add.button(0, 0, 
-			Data.Common.actionMenu.use.sprite,
-			this.switchAction, 
-			this);
-		this.btn_use.objRef = 'action';
-		this.btn_use.fnRef = 'toggleUse'
-		if(_com.action.currentAction === 'use') this.btn_use.frame = 1;
+		//Create buttons
+		var x = 0;
+		for(var butt in this.buttons){
+			this[butt] = this.game.add.button(
+				this.amGrp.getChildAt(x).x + this.offsetX[this.buttons[butt].offsetX], 0,
+				this.buttons[butt].sprite,
+				this.switchAction, this
+			);
+			
+			//objRef and fnRef are used when switching the action
+			this[butt].objRef = this.buttons[butt].obj;
+			this[butt].fnRef = this.buttons[butt].fn;
+			
+			//Currently selected butt frame
+			if(_com.action.currentAction === butt) this[butt].frame = 1;
+			
+			//Add to group
+			this.amGrp.add(this[butt]);
 
-		//Talk button
-		this.btn_talk = this.game.add.button(this.btn_use.x+smBtnWidth, 0, 
-			Data.Common.actionMenu.talk.sprite,
-			this.switchAction, 
-			this);
-		this.btn_talk.objRef = 'action';
-		this.btn_talk.fnRef = 'toggleTalk'
-		if(_com.action.currentAction === 'talk') this.btn_talk.frame = 1;
-
-		//See button
-		this.btn_see = this.game.add.button(this.btn_talk.x+smBtnWidth, 0, 
-			Data.Common.actionMenu.see.sprite,
-			this.switchAction, 
-			this);
-		this.btn_see.objRef = 'action';
-		this.btn_see.fnRef = 'toggleSee'
-		if(_com.action.currentAction === 'see') this.btn_see.frame = 1;
-
-		//Spell button
-		this.btn_spell = this.game.add.button(this.btn_see.x+smBtnWidth, 0, 
-			Data.Common.actionMenu.spell.sprite,
-			this.switchAction, 
-			this);
-		this.btn_spell.objRef = 'action';
-		this.btn_spell.fnRef = 'toggleSpell'
-		if(_com.action.currentAction === 'spell') this.btn_spell.frame = 1;
-
-		//Item button
-		this.btn_item = this.game.add.button(this.btn_spell.x+lgBtnWidth, 0,
-			Data.Common.actionMenu.item.sprite,
-			this.switchAction, 
-			this);
-		this.btn_item.objRef = 'action';
-		this.btn_item.fnRef = 'toggleItem'
-		if(_com.action.currentAction === 'item') this.btn_spell.frame = 1;
-
-		//Menu button
-		this.btn_menu = this.game.add.button(this.btn_item.x+lgBtnWidth, 0, 
-			Data.Common.actionMenu.menu.sprite,
-			this.switchAction, 
-			this, 0, 0, 1);
-		this.btn_menu.objRef = 'player';
-		this.btn_menu.fnRef = 'toggleMenu'
-
-		//Compile action menu group
-		this.amGrp.add(this.sp_base);
-		this.amGrp.add(this.btn_use);
-		this.amGrp.add(this.btn_talk);
-		this.amGrp.add(this.btn_see);
-		this.amGrp.add(this.btn_spell);
-		this.amGrp.add(this.btn_item);
-		this.amGrp.add(this.btn_menu);
+			x++
+		}
 
 		//Hide after initializing
 		this.hideMenu();
