@@ -4,6 +4,7 @@ Tools.Main = function(game){
 	this._controller = null;
 	this._player = null;
 	this._menu = null;
+	this._items = null;
 	this._inventory = null;
 	this._spells = null;
 	this._actionMenu = null;
@@ -20,9 +21,11 @@ Tools.Main.prototype = {
 		//Global object
 		this._player = new Player(this.game);
 		this._controller = new Controller(this.game);
+		this._items = new Items(this.game);
 		this._inventory = new Inventory(this.game);
 		this._spells = new Spell(this.game);
-		this._menu = new Menu(this.game, this);
+		this._menu = new Menu(this.game);
+		this._action = new Action(this.game);
 		this._actionMenu = new ActionMenu(this.game);
 
 		//Add global objects to object pool
@@ -31,6 +34,7 @@ Tools.Main.prototype = {
 		//Run necessary initialization
 		_com.controller.init();
 		_com.menu.composeMenuOptions();
+		_com.actionMenu.init();
 
 		this.switchScreen();
 	},
@@ -39,8 +43,10 @@ Tools.Main.prototype = {
 		_com.player = this._player;
 		_com.controller = this._controller;
 		_com.menu = this._menu;
+		_com.items = this._items;
 		_com.inventory = this._inventory;
 		_com.spells = this._spells;
+		_com.action = this._action;
 		_com.actionMenu = this._actionMenu;
 	},
 

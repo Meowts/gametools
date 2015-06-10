@@ -39,7 +39,7 @@ Screen.Menu.prototype = {
 
 	destroy : function(){
 		_com.player.destroy();
-		_com.actionMenu.destroy();
+		_com.actionMenu.hideMenu();
 		this.backBtn.destroy();
 	}
 }

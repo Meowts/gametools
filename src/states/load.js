@@ -42,9 +42,9 @@ Tools.Load.prototype = {
 		this.game.load.spritesheet('am-use', '/assets/amUse.png', 170, 100, 2);
 		this.game.load.spritesheet('am-talk', '/assets/amTalk.png', 170, 100, 2);
 		this.game.load.spritesheet('am-see', '/assets/amSee.png', 170, 100, 2);
-		this.game.load.image('am-spell', '/assets/amSpell.png');
-		this.game.load.image('am-item', '/assets/amItem.png');
-		this.game.load.image('am-menu', '/assets/amMenu.png');
+		this.game.load.spritesheet('am-spell', '/assets/amSpell.png', 210, 100, 2);
+		this.game.load.spritesheet('am-item', '/assets/amItem.png', 210, 100, 2);
+		this.game.load.spritesheet('am-menu', '/assets/amMenu.png', 94, 100, 2);
 
 		//Action icons
 		this.game.load.image('hamFist', '/assets/hamFist.png');

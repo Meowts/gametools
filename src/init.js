@@ -29,5 +29,9 @@ var GFN = {
 	isFunction : function(functionToCheck) {
 		var getType = {};
 		return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+	},
+
+	exec : function(fn, context){
+		context[fn]();
 	}
 }
