@@ -88,6 +88,9 @@ ActionMenu.prototype = {
 			x++
 		}
 
+		//Keep it all up there
+		this.amGrp.setAll('fixedToCamera', true);
+
 		//Hide after initializing
 		this.hideMenu();
 	},
