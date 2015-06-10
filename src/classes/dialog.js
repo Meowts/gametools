@@ -9,6 +9,7 @@ var Dialog = function(game){
 	this.charsPerLine = 50;
 	this.lineHeight = 30;
 	this.numLines = null;
+	this.yOffset = 3;
 
 	this.timer = null;
 	this.style = {font: '16px Consolas', align: 'center'};
@@ -16,7 +17,7 @@ var Dialog = function(game){
 
 Dialog.prototype = {
 
-	drawSpeechArea : function(dialog){
+	drawSpeechArea : function(dialog, xDef, yDef){
 		this.clearSpeech();
 
 		var length = dialog.length;
@@ -38,6 +39,12 @@ Dialog.prototype = {
 		//Default starting position
 		var startX = this.game.world.centerX;
 		var startY = 130;
+		
+		//If x and y starting points are passed in
+		if((xDef !== null && xDef !== undefined) && (yDef !== null && yDef !== undefined)){
+			startX = xDef;
+			startY = yDef;
+		}
 
 		//Box coordinates
 		var start = [0, 0];
@@ -61,10 +68,10 @@ Dialog.prototype = {
 		this.speechArea.endFill();
 	},
 
-	showDialog : function(dialog){
-		this.drawSpeechArea(dialog);
+	showDialog : function(dialog, x, y){
+		this.drawSpeechArea(dialog, x, y);
 
-		this.text = this.game.add.text(0, ((this.lineHeight*this.numLines)/2)+3, dialog, this.style);
+		this.text = this.game.add.text(0, ((this.lineHeight * this.numLines) / 2) + this.yOffset, dialog, this.style);
 		this.text.anchor.setTo(0.5, 0.5);
 
 		this.speechArea.addChild(this.text);
