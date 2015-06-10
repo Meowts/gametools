@@ -16,7 +16,8 @@ var Global = {
 		SpriteTest : Screen.SpriteTest,
 		CameraTest : Screen.CameraTest,
 		WalkingBounds : Screen.WalkingBounds,
-		Menu : Screen.Menu
+		Menu : Screen.Menu,
+		ActionTest : Screen.ActionTest
 	}
 };
 

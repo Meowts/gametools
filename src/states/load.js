@@ -58,7 +58,9 @@ Tools.Load.prototype = {
 		this.game.load.image('boundsBG', '/assets/boundsBG.png');
 		this.game.load.image('boundsFloor', '/assets/boundsFloor.png');
 
-		this.game.load.image('test', '/assets/test.png');
+		this.game.load.image('test1', '/assets/test1.png');
+		this.game.load.image('test2', '/assets/test2.png');
+		this.game.load.image('test3', '/assets/test3.png');
 	},
 
 	create : function(){

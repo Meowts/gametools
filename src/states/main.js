@@ -72,7 +72,7 @@ Tools.Main.prototype = {
 		this.game.world.resize(Global.initWidth, Global.initHeight);
 
 		//Enable/Disable input for the screen
-		this._controller.keyboard.enabled = Data[Global.CS].keyboardEnabled;
+		this._controller.keyboard.enabled = Data.Screen[Global.CS].keyboardEnabled;
 		//Mouse Input when the time comes
 
 		//Set screen
