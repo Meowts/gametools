@@ -42,6 +42,7 @@ Screen.ActionTest.prototype = {
 	destroy : function(){
 		_com.player.destroy();
 		_com.actionMenu.hideMenu();
+		_com.items.destroy();
 		this.backBtn.destroy();
 	}
 }

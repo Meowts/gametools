@@ -6,8 +6,12 @@ var Items = function(game){
 
 Items.prototype = {
 
-	placeItems : function(){
+	init : function(){
 		this.itemGrp = this.game.add.group();
+	},
+
+	placeItems : function(){
+		this.itemGrp.removeChildren();
 
 		//Set item sprites on screen
 		for(var item in Data.Screen[Global.CS].items){
@@ -29,5 +33,9 @@ Items.prototype = {
 
 	itemAction : function(item){
 		_com.action[_com.action.currentAction](item);
+	},
+
+	destroy : function(){
+		GFN.hideGroup(this.itemGrp);
 	}
 }

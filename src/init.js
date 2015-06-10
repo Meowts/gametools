@@ -12,7 +12,7 @@ var Screen = {
 	}
 }
 
-//Misc helper functions
+//Misc helper functions (Global Functions)
 var GFN = {
 	//Return the count of items in an object
 	count : function(obj){
@@ -33,5 +33,13 @@ var GFN = {
 
 	exec : function(fn, context){
 		context[fn]();
+	},
+
+	showGroup : function(group){
+		group.forEach(function(comp){comp.revive()}, this);
+	},
+
+	hideGroup : function(group){
+		group.forEach(function(comp){comp.kill()}, this);
 	}
 }

@@ -96,11 +96,11 @@ ActionMenu.prototype = {
 	},
 
 	drawMenu : function(){
-		this.amGrp.forEach(function(comp){comp.revive()}, this);
+		GFN.showGroup(this.amGrp);
 	},
 
 	hideMenu : function(){
-		this.amGrp.forEach(function(comp){comp.kill()}, this);
+		GFN.hideGroup(this.amGrp);
 	},
 
 	switchAction : function(item){

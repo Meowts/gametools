@@ -8,6 +8,8 @@ Tools.Main = function(game){
 	this._inventory = null;
 	this._spells = null;
 	this._actionMenu = null;
+	this._dialog = null;
+
 	this._screen = null;
 }
 
@@ -27,12 +29,14 @@ Tools.Main.prototype = {
 		this._menu = new Menu(this.game);
 		this._action = new Action(this.game);
 		this._actionMenu = new ActionMenu(this.game);
+		this._dialog = new Dialog(this.game);
 
 		//Add global objects to object pool
 		this.comObjects();
 
 		//Run necessary initialization
 		_com.controller.init();
+		_com.items.init();
 		_com.menu.composeMenuOptions();
 		_com.actionMenu.init();
 
@@ -48,6 +52,7 @@ Tools.Main.prototype = {
 		_com.spells = this._spells;
 		_com.action = this._action;
 		_com.actionMenu = this._actionMenu;
+		_com.dialog = this._dialog;
 	},
 
 	update : function(){
