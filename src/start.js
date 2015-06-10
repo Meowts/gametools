@@ -1,3 +1,5 @@
+
+//Global variables
 var Global = {
 	initWidth : 1024,
 	initHeight : 780,
@@ -17,6 +19,9 @@ var Global = {
 		Menu : Screen.Menu
 	}
 };
+
+//Container to hold independant objects that have controls in multiple places (filled in main state)
+var _com = {};
 
 //Initialize Phaser game object
 var game = new Phaser.Game(Global.initWidth, Global.initHeight, Phaser.AUTO, 'main');

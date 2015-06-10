@@ -1,19 +1,14 @@
-Screen.Menu = function(game, player, controller){
+Screen.Menu = function(game){
 	this.game = game;
-	this._player = player;
-	this._controller = controller;
-
-	this._actionMenu = null;
 
 	this.backBtn = null;
 }
 
 Screen.Menu.prototype = {
 	create : function(){
-		this._player.init(300, 300);
+		_com.player.init(300, 300);
 
-		this._actionMenu = new ActionMenu(this.game, this._controller);
-		this._actionMenu.drawMenu();
+		_com.actionMenu.drawMenu();
 
 		this.placeBackButton();
 	},
@@ -43,8 +38,8 @@ Screen.Menu.prototype = {
 	},
 
 	destroy : function(){
-		this._player.destroy();
-		this._actionMenu.destroy();
+		_com.player.destroy();
+		_com.actionMenu.destroy();
 		this.backBtn.destroy();
 	}
 }

@@ -1,7 +1,5 @@
-Screen.WalkingBounds = function(game, player, controller){
+Screen.WalkingBounds = function(game){
 	this.game = game;
-	this._player = player;
-	this._controller = controller;
 
 	this.bg = null;
 	this.floor = null;
@@ -20,15 +18,15 @@ Screen.WalkingBounds.prototype = {
 
 		this.game.world.resize(this.bg.width, 780);
 
-		this._player.init(115, 660);
+		_com.player.init(115, 660);
 
 		this.placeBackButton();
 	},
 
 	update : function(){
-		this._player.update();
+		_com.player.update();
 
-		this.game.physics.arcade.collide(this._player.sprite, this.bg,
+		this.game.physics.arcade.collide(_com.player.sprite, this.bg,
 			function(){}, null, this);
 	},
 
@@ -54,8 +52,10 @@ Screen.WalkingBounds.prototype = {
 	},
 
 	destroy : function(){
-		this._player.destroy();
+		_com.player.destroy();
+
 		this.bg.destroy();
+		this.floor.destroy();
 		this.backBtn.destroy();
 	}
 }

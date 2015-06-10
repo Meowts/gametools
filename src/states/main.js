@@ -1,8 +1,12 @@
 Tools.Main = function(game){
 	this.game = game;
+
 	this._controller = null;
 	this._player = null;
 	this._menu = null;
+	this._inventory = null;
+	this._spells = null;
+	this._actionMenu = null;
 	this._screen = null;
 }
 
@@ -10,16 +14,34 @@ Tools.Main.prototype = {
 	create : function(){
 		this.game.stage.backgroundColor = '#555555';
 
+		//Physics lol
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+		//Global object
 		this._player = new Player(this.game);
+		this._controller = new Controller(this.game);
+		this._inventory = new Inventory(this.game);
+		this._spells = new Spell(this.game);
+		this._menu = new Menu(this.game, this);
+		this._actionMenu = new ActionMenu(this.game);
 
-		this._controller = new Controller(this.game, this._player);
-		this._controller.init();
+		//Add global objects to object pool
+		this.comObjects();
 
-		this._player._menu.composeMenuOptions();
+		//Run necessary initialization
+		_com.controller.init();
+		_com.menu.composeMenuOptions();
 
 		this.switchScreen();
+	},
+
+	comObjects : function(){
+		_com.player = this._player;
+		_com.controller = this._controller;
+		_com.menu = this._menu;
+		_com.inventory = this._inventory;
+		_com.spells = this._spells;
+		_com.actionMenu = this._actionMenu;
 	},
 
 	update : function(){
@@ -48,7 +70,7 @@ Tools.Main.prototype = {
 		//Mouse Input when the time comes
 
 		//Set screen
-		this._screen = new Screen[Global.CS](this.game, this._player, this._controller);
+		this._screen = new Screen[Global.CS](this.game);
 		this._screen.create();
 	}
 }

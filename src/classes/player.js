@@ -7,10 +7,6 @@
 var Player = function(game){
 	this.game = game;
 
-	this.inventory = new Inventory(this.game);
-	this.spells = new Spell(this.game);
-	this._menu = new Menu(this.game, this);
-
 	this.sprite = null;
 
 	this.inputEnabled = true;
@@ -38,8 +34,8 @@ Player.prototype = {
 		this.game.camera.follow(this.sprite);
 	},
 
-	update : function(input){
-		if(this.inputEnabled) input.handleInput();
+	update : function(){
+		if(this.inputEnabled) _com.controller.handleInput();
 	},
 
 	/*
@@ -88,10 +84,10 @@ Player.prototype = {
 	*/
 
 	toggleMenu : function(){
-		if(this._menu.menuGrp === null){
-			this._menu.drawMenu();
+		if(_com.menu.menuGrp === null){
+			_com.menu.drawMenu();
 		}
-		else this._menu.destroy();
+		else _com.menu.destroy();
 	},
 
 	/*

@@ -4,9 +4,8 @@
 *
 */
 
-var Controller = function(game, player){
+var Controller = function(game){
 	this.game = game;
-	this._player = player;
 
 	//Keyboard
 	this.keyboard = null;
@@ -62,19 +61,19 @@ Controller.prototype = {
 	},
 
 	setToggleHandlers : function(){
-		this.menuKey.onDown.add(this._player.toggleMenu, this._player);
+		this.menuKey.onDown.add(_com.player.toggleMenu, _com.player);
 	},
 
 	handleInput : function(){
 		//Walking
 		if(this.keys.upKey.isDown || this.keys.downKey.isDown || this.keys.leftKey.isDown || this.keys.rightKey.isDown){
-			if(this.keys.upKey.isDown) 			this._player.moveUp();
-			if(this.keys.downKey.isDown)		this._player.moveDown();
-			if(this.keys.leftKey.isDown) 		this._player.moveLeft();
-			if(this.keys.rightKey.isDown) 		this._player.moveRight();
+			if(this.keys.upKey.isDown) 			_com.player.moveUp();
+			if(this.keys.downKey.isDown)		_com.player.moveDown();
+			if(this.keys.leftKey.isDown) 		_com.player.moveLeft();
+			if(this.keys.rightKey.isDown) 		_com.player.moveRight();
 		}
 		else{
-			this._player.stopWalking();
+			_com.player.stopWalking();
 		}
 	},
 

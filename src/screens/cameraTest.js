@@ -1,7 +1,5 @@
-Screen.CameraTest = function(game, player, controller){
+Screen.CameraTest = function(game){
 	this.game = game;
-	this._player = player;
-	this._controller = controller;
 
 	this.bg = null;
 	this.land = null;
@@ -15,13 +13,13 @@ Screen.CameraTest.prototype = {
 
 		this.game.world.resize(this.bg.width, this.bg.height);
 
-		this._player.init(200, 600);
+		_com.player.init(200, 600);
 
 		this.placeBackButton();
 	},
 
 	update : function(){
-		this._player.update();
+		_com.player.update();
 	},
 
 	render : function(){},
@@ -46,7 +44,8 @@ Screen.CameraTest.prototype = {
 	},
 
 	destroy : function(){
-		this._player.destroy();
+		_com.player.destroy();
+		
 		this.bg.destroy();
 		this.land.destroy();
 		this.backBtn.destroy();

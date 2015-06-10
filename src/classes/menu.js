@@ -6,9 +6,8 @@
 *
 */
 
-var Menu = function(game, player){
+var Menu = function(game){
 	this.game = game;
-	this._player = player;
 
 	this.action = 'main';
 
@@ -24,9 +23,13 @@ var Menu = function(game, player){
 
 Menu.prototype = {
 
+	exec : function(){
+		this.drawMenu();
+	},
+
 	composeMenuOptions : function(){
-		var inventory = this._player.inventory.items;
-		var spells = this._player.spells.availableSpells;
+		var inventory = _com.inventory.items;
+		var spells = _com.spells.availableSpells;
 		var options = {
 			option1 : 'option1',
 			option2 : 'option2',
@@ -122,6 +125,7 @@ Menu.prototype = {
 		}
 	},
 
+	//This one is needed for the exit button to work
 	exitMenu : function(context){
 		if(context.menuGrp !== null){
 			context.menuGrp.destroy();

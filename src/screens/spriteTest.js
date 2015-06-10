@@ -1,7 +1,5 @@
-Screen.SpriteTest = function(game, player, controller){
+Screen.SpriteTest = function(game){
 	this.game = game;
-	this._player = player;
-	this._controller = controller;
 
 	this.instructionText = null;
 	this.frameRateText = null;
@@ -15,7 +13,7 @@ Screen.SpriteTest = function(game, player, controller){
 
 Screen.SpriteTest.prototype = {
 	create : function(){
-		this._player.init(this.game.world.width/2, this.game.world.height/2);
+		_com.player.init(this.game.world.width/2, this.game.world.height/2);
 
 		this.instructionText = this.game.add.text(
 			Data[Global.CS].copy.instructions.x,
@@ -26,18 +24,18 @@ Screen.SpriteTest.prototype = {
 
 		this.timer = this.game.time.create(false);
 
-		this.frameRateText = this.game.add.text(40, 120, 'Framerate: ' + this._player.frameRate, {font: '16px Consolas'});
+		this.frameRateText = this.game.add.text(40, 120, 'Framerate: ' + _com.player.frameRate, {font: '16px Consolas'});
 	
 		this.placeBackButton();
 	},
 
 	update : function(){
-		this._player.update();
+		_com.player.update();
 		this.adjustFramerate();
 	},
 
 	render : function(){
-		this.frameRateText.setText('Framerate: ' + this._player.frameRate);
+		this.frameRateText.setText('Framerate: ' + _com.player.frameRate);
 	},
 
 	adjustFramerate : function(){
@@ -59,10 +57,10 @@ Screen.SpriteTest.prototype = {
 
 	changeFramerate : function(){
 		if(this.game.input.keyboard.isDown(Phaser.Keyboard.W)){
-			this._player.frameRate ++;
+			_com.player.frameRate ++;
 		}
 		else if(this.game.input.keyboard.isDown(Phaser.Keyboard.S)){
-			this._player.frameRate --;
+			_com.player.frameRate --;
 		}
 	},
 
@@ -85,7 +83,8 @@ Screen.SpriteTest.prototype = {
 	},
 
 	destroy : function(){
-		this._player.destroy();
+		_com.player.destroy();
+		
 		this.instructionText.destroy(); 
 		this.frameRateText.destroy();
 		this.timer.destroy();

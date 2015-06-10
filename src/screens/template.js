@@ -1,7 +1,5 @@
-Screen.MainMenu = function(game, player, controller){
+Screen.MainMenu = function(game){
 	this.game = game;
-	this._player = player;
-	this._controller = controller;
 
 	this.backBtn = null;
 }
