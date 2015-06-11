@@ -8,6 +8,10 @@ var Dialog = function(game){
 
 	this.text = null;
 
+	this.dialogQueue = [];
+	this.queueLength = 0;
+	this.queueIndex = 0;
+
 	this.width = null;
 	this.charWidth = 5;
 	this.widthPadding = 20;
@@ -17,6 +21,7 @@ var Dialog = function(game){
 	this.numLines = null;
 	this.yOffset = 3;
 	this.defaultStartY = 130;
+	this.yAboveChar = 100;
 
 	this.showDuration = null;
 	this.durationMultiplier = 80;
@@ -83,6 +88,12 @@ Dialog.prototype = {
 	},
 
 	show : function(dialog, x, y){
+
+		if(typeof dialog !== "string"){
+			this.queueDialog(dialog);
+			return;
+		}
+
 		this.drawSpeechArea(dialog, x, y);
 
 		this.text = this.game.add.text(0, ((this.lineHeight * this.numLines) / 2) + this.yOffset, dialog, this.style);
@@ -90,6 +101,56 @@ Dialog.prototype = {
 
 		this.speechArea.addChild(this.text);
 
+		if(this.dialogQueue !== []){
+			this.queueLength--;
+			this.queueIndex++;
+
+			if(this.queueLength > 0){
+				this.setupNext();
+			}else{
+				this.dialogQueue = [];
+				this.startFade();
+			}
+		}
+		else{
+			this.startFade();
+		}
+	},
+
+	queueDialog : function(dialog){
+		for(var line in dialog){
+			this.dialogQueue.push(dialog[line]);
+		}
+		this.queueLength = this.dialogQueue.length;
+		this.queueIndex = 0;
+
+		this.converse();
+	},
+
+	setupNext : function(){
+		if(this.timer !== null){
+			this.timer.stop();
+			this.timer.destroy();
+		}
+
+		this.timer = this.game.time.create();
+		this.timer.add(this.showDuration, this.converse, this);
+		this.timer.start();	
+	},
+
+	converse : function(){
+		if(this.dialogQueue[this.queueIndex].type === 'player'){
+			var x = _com.player.sprite.x;
+			var y = _com.player.sprite.y - this.yAboveChar;
+			this.show(this.dialogQueue[this.queueIndex].text, x, y)
+		}else if(this.dialogQueue[this.queueIndex].type === 'item'){
+			var x = _com.items.getByProperty('id', this.dialogQueue[this.queueIndex].character).x;
+			var y = _com.items.getByProperty('id', this.dialogQueue[this.queueIndex].character).y - this.yAboveChar;
+			this.show(this.dialogQueue[this.queueIndex].text, x, y)
+		}
+	},
+
+	startFade : function(){
 		this.fadeOut = this.game.add.tween(this.speechArea);
 		this.fadeOut.to({alpha : 0}, this.fadeDuration, Phaser.Easing.linear);
 
@@ -100,7 +161,7 @@ Dialog.prototype = {
 
 		this.timer = this.game.time.create();
 		this.timer.add(this.showDuration, this.fade, this);
-		this.timer.start();
+		this.timer.start();		
 	},
 
 	fade : function(){

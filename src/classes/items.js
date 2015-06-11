@@ -46,6 +46,12 @@ Items.prototype = {
 		_com.menu.updateInventory();
 	},
 
+	getByProperty : function(prop, value){
+		for(var x = 0; x < this.itemGrp.countLiving(); x++){
+			if(this.itemGrp.getAt(x)[prop] === value) return this.itemGrp.getAt(x);
+		}
+	},
+
 	destroy : function(){
 		GFN.hideGroup(this.itemGrp);
 	}
