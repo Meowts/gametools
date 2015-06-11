@@ -27,6 +27,9 @@ Player.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.setSize(this.sprite.width-30, 10, 0, this.sprite.height-65);
 
+		//Give it a type identifier
+		this.sprite.type = 'player';
+
 		//Add animations
 		this.sprite.animations.add(this.walkingAnim);
 

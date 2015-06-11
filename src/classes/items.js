@@ -30,6 +30,16 @@ Items.prototype = {
 		}
 	},
 
+	checkPairing : function(entity){
+		if(Data.Items.On.hasOwnProperty(entity.id+'_'+_com.inventory.currentlySelected.id)){
+			return Data.Items.On[entity.id + '_' + _com.inventory.currentlySelected.id].result;
+		}else if(Data.Items.On.hasOwnProperty(_com.inventory.currentlySelected.id+'_'+entity.id)){
+			return Data.Items.On[_com.inventory.currentlySelected.id + '_' + entity.id].result;
+		}else{
+			return null;
+		}
+	},
+
 	destroy : function(){
 		GFN.hideGroup(this.itemGrp);
 	}

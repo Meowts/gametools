@@ -11,8 +11,7 @@ Action.prototype = {
 			//If it's collectable, place it in your inventory
 			if(Data.Items[entity.id].collectable){
 				_com.inventory.acquire(entity);
-			}
-			else{
+			}else{
 				this.see(entity);
 			}
 		}
@@ -36,12 +35,18 @@ Action.prototype = {
 		}
 	},
 
-	spell : function(){
+	spell : function(entity){
 
 	},
 
-	item : function(){
+	item : function(entity){
+		var returnFun = _com.items.checkPairing(entity);
 
+		if(returnFun !== null){
+			GFN.exec(returnFun, _com.actionFunctions);
+		}else{
+			_com.dialog.show("This does nothing.");
+		}
 	},
 
 	toggleUse : function(){

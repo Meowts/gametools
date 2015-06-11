@@ -2,6 +2,7 @@
 
 Data.Items = {
 	test1 : {
+		id : 'test1',
 		sprite : 'test1',
 		description : "This is the first test item. Collectable",
 		dialog : Data.Dialog.item.test,
@@ -9,6 +10,7 @@ Data.Items = {
 	},
 
 	test2 : {
+		id : 'test2',
 		sprite : 'test2',
 		description : "This is the second test item. Collectable",
 		dialog : Data.Dialog.item.test2,
@@ -16,6 +18,7 @@ Data.Items = {
 	},
 
 	test3 : {
+		id : 'test3',
 		sprite : 'test3',
 		description : "This is the third test item. Non-Collectable",
 		dialog : Data.Dialog.item.test3,
@@ -29,7 +32,7 @@ for(var item in Data.Items){
 }
 
 Data.Items.On = {
-	'test,test2' : {
-		action : null
+	'test1_test2' : {
+		result : 'test1_test2'
 	}
 }
