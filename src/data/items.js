@@ -23,6 +23,11 @@ Data.Items = {
 	},	
 }
 
+//Assign type identifier to all the items
+for(var item in Data.Items){
+	Data.Items[item].type = 'item';
+}
+
 Data.Items.On = {
 	'test,test2' : {
 		action : null

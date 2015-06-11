@@ -18,8 +18,9 @@ Inventory.prototype = {
 		//Display feedback
 		_com.dialog.show("Acquired: " + item.id);
 
-		//Remove sprite from screen
+		//Remove sprite from screen and from screen data
 		_com.items.itemGrp.removeChild(item);
+		delete Data.Screen[Global.CS].items[item.id];
 	},
 
 	throwAway : function(item){
@@ -28,5 +29,6 @@ Inventory.prototype = {
 
 	selectItem : function(item){
 		this.currentlySelected = item;
+		_com.actionMenu.placeItem(item);
 	}
 }

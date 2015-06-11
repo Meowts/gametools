@@ -10,6 +10,9 @@ var ActionMenu = function(game){
 	this.item = null;
 	this.menu = null;
 
+	this.displayedSpell = null;
+	this.displayedItem = null;
+
 	this.offsetX = {
 		sm : 170,
 		lg : 210
@@ -114,5 +117,22 @@ ActionMenu.prototype = {
 		var obj = item.objRef;
 		var fn = item.fnRef;
 		GFN.exec(fn, _com[obj]);
+	},
+
+	placeItem : function(item){
+		this.removeItem();
+
+		//Get the center of the item box
+		var x = this.item.width/2;
+		var y = this.item.height/2;
+
+		this.displayedItem = this.game.add.sprite(x, y, item.sprite);
+		this.displayedItem.anchor.setTo(0.5, 0.5);
+
+		this.item.addChild(this.displayedItem);
+	},
+
+	removeItem : function(){
+		if(this.displayedItem !== null) this.displayedItem.destroy();
 	}
 }

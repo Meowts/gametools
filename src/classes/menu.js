@@ -9,7 +9,7 @@
 var Menu = function(game){
 	this.game = game;
 
-	this.action = 'main';
+	this.selection = 'main';
 
 	this.topSprite = 'menu-top';
 	this.midSprite = 'menu-mid';
@@ -54,7 +54,7 @@ Menu.prototype = {
 		this.menuGrp = this.game.add.group();
 
 		//Get number of menu items
-		var totalItems = GFN.count(this.MenuList[this.action]);
+		var totalItems = GFN.count(this.MenuList[this.selection]);
 
 		//Button positioning
 		var startX = this.game.width - 200;
@@ -62,18 +62,18 @@ Menu.prototype = {
 		var incrementY = 30;
 
 		//If it's not the main menu, add a back button
-		if(this.action !== 'main'){
+		if(this.selection !== 'main'){
 			this.addButton(startX, startY, 'back', 'top', 'main');
 			startY += incrementY;
 		}
 
 		var x = 1;
-		for(var item in this.MenuList[this.action]){
+		for(var item in this.MenuList[this.selection]){
 			var section = 'mid';
-			if(x === 1 && this.action === 'main') section = 'top';
+			if(x === 1 && this.selection === 'main') section = 'top';
 			else if(x === totalItems) section = 'bottom';
 
-			this.addButton(startX, startY, item, section, this.MenuList[this.action][item])
+			this.addButton(startX, startY, item, section, this.MenuList[this.selection][item])
 
 			startY += incrementY;
 			x ++;
@@ -83,7 +83,7 @@ Menu.prototype = {
 		this.menuGrp.fixedToCamera = true;
 	},
 
-	addButton : function(x, y, title, section, action){
+	addButton : function(x, y, title, section, selection){
 		var buttonSprite;
 		//Menu seperated into three sprites - top, mid, bottom - take the right sprite
 		//for the right item placement
@@ -106,7 +106,7 @@ Menu.prototype = {
 			this, 1, 0, 1, 0);
 		button.anchor.setTo(0.5, 0.5);
 
-		button.action = action;
+		button.selection = selection;
 
 		var buttonText = this.game.add.text(0, 2, title, this.menuFont);
 		buttonText.anchor.setTo(0.5, 0.5);
@@ -115,12 +115,24 @@ Menu.prototype = {
 		this.menuGrp.add(button);
 	},
 
-	switchLayer : function(item){
-		if(GFN.isFunction(item.action)){
-			item.action(this);
+	switchLayer : function(cont){
+		//If it's an item or a spell
+		if(cont.selection.type){
+			if(cont.selection.type === 'item'){
+				_com.inventory.selectItem(cont.selection);
+			}
 		}
+		//If the button performs function
+		else if(GFN.isFunction(cont.selection)){
+			if(cont.selection === this.exitMenu){
+				cont.selection(this);
+			}else{
+				GFN.exec(cont.selection, this);
+			}
+		}
+		//Otherwise it's entering another menu layer
 		else{
-			this.action = item.action;
+			this.selection = cont.selection;
 			this.drawMenu();
 		}
 	},

@@ -12,13 +12,18 @@ Action.prototype = {
 			if(Data.Items[entity.id].collectable){
 				_com.inventory.acquire(entity);
 			}
+			else{
+				this.see(entity);
+			}
 		}
 	},
 
 	talk : function(entity){
 		if(entity.type === 'item'){
 			if(Data.Items[entity.id].dialog !== null && Data.Items[entity.id].dialog !== undefined){
-				_com.dialog.show(Data.Items[entity.id].dialog);
+				var x = entity.x;
+				var y = entity.y - 100;
+				_com.dialog.show(Data.Items[entity.id].dialog, x, y);
 			}
 		}
 	},
