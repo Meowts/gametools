@@ -6,19 +6,29 @@ var Action = function(game){
 
 Action.prototype = {
 
-	use : function(item){
-		//If it's collectable, place it in your inventory
-		if(Data.Items[item.id].collectable){
-			_com.inventory.acquire(item.id);
+	use : function(entity){
+		if(entity.type === 'item'){
+			//If it's collectable, place it in your inventory
+			if(Data.Items[entity.id].collectable){
+				_com.inventory.acquire(entity);
+			}
 		}
 	},
 
-	talk : function(){
-
+	talk : function(entity){
+		if(entity.type === 'item'){
+			if(Data.Items[entity.id].dialog !== null && Data.Items[entity.id].dialog !== undefined){
+				_com.dialog.show(Data.Items[entity.id].dialog);
+			}
+		}
 	},
 
-	see : function(){
-
+	see : function(entity){
+		if(entity.type === 'item'){
+			if(Data.Items[entity.id].description !== null && Data.Items[entity.id].description !== undefined){
+				_com.dialog.show(Data.Items[entity.id].description);
+			}
+		}
 	},
 
 	spell : function(){

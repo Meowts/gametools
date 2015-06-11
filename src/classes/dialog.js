@@ -10,6 +10,7 @@ var Dialog = function(game){
 	this.lineHeight = 30;
 	this.numLines = null;
 	this.yOffset = 3;
+	this.showDuration = null;
 
 	this.timer = null;
 	this.style = {font: '16px Consolas', align: 'center'};
@@ -23,6 +24,9 @@ Dialog.prototype = {
 		var length = dialog.length;
 		var arr = dialog.split('\n');
 		this.numLines = arr.length;
+
+		//Get a good showing duration based on the length
+		this.showDuration = length * 80;
 
 		//Get the line with the longest length to determine width
 		if(this.numLines > 1){
@@ -58,7 +62,7 @@ Dialog.prototype = {
 		this.speechArea.beginFill(0x0094FF);
 		this.speechArea.lineStyle(3, 0x7F0000);
 
-		//Draw the box
+		//Draw the damn box
 		this.speechArea.lineTo(topRight[0], topRight[1]);
 		this.speechArea.lineTo(bottomRight[0], bottomRight[1]);
 		this.speechArea.lineTo(bottomLeft[0], bottomLeft[1]);
@@ -68,13 +72,29 @@ Dialog.prototype = {
 		this.speechArea.endFill();
 	},
 
-	showDialog : function(dialog, x, y){
+	show : function(dialog, x, y){
 		this.drawSpeechArea(dialog, x, y);
 
 		this.text = this.game.add.text(0, ((this.lineHeight * this.numLines) / 2) + this.yOffset, dialog, this.style);
 		this.text.anchor.setTo(0.5, 0.5);
 
 		this.speechArea.addChild(this.text);
+
+		this.fadeOut = this.game.add.tween(this.speechArea);
+		this.fadeOut.to({alpha : 0}, 1200, Phaser.Easing.linear);
+
+		if(this.timer !== null){
+			this.timer.stop();
+			this.timer.destroy();
+		}
+
+		this.timer = this.game.time.create();
+		this.timer.add(this.showDuration, this.fade, this);
+		this.timer.start();
+	},
+
+	fade : function(){
+		this.fadeOut.start();
 	},
 
 	clearSpeech : function(){

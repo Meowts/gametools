@@ -41,5 +41,9 @@ var GFN = {
 
 	hideGroup : function(group){
 		group.forEach(function(comp){comp.kill()}, this);
+	},
+
+	performAction : function(entity){
+		_com.action[_com.action.currentAction](entity);
 	}
 }

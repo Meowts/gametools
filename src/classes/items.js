@@ -22,17 +22,12 @@ Items.prototype = {
 			);
 
 			itemX.id = item;
+			itemX.type = 'item';
 			itemX.inputEnabled = true;
-			itemX.events.onInputDown.add(this.itemAction, this);
+			itemX.events.onInputDown.add(GFN.performAction, this);
 
 			this.itemGrp.add(itemX);
 		}
-
-
-	},
-
-	itemAction : function(item){
-		_com.action[_com.action.currentAction](item);
 	},
 
 	destroy : function(){
