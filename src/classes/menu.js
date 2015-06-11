@@ -11,6 +11,8 @@ var Menu = function(game){
 
 	this.selection = 'main';
 
+	this.isOpen = false;
+
 	this.topSprite = 'menu-top';
 	this.midSprite = 'menu-mid';
 	this.bottomSprite = 'menu-bottom';
@@ -49,8 +51,16 @@ Menu.prototype = {
 		this.MenuList.options = options;
 	},
 
+	updateInventory : function(){
+		this.MenuList.inventory = _com.inventory.items;
+	},
+
+	updateSpells : function(){
+		this.MenuList.spells = _com.spells.availableSpells;
+	},
+
 	drawMenu : function(){
-		this.destroy();
+		this.refresh();
 		this.menuGrp = this.game.add.group();
 
 		//Get number of menu items
@@ -81,6 +91,8 @@ Menu.prototype = {
 
 		//So that it always apppears on screen
 		this.menuGrp.fixedToCamera = true;
+
+		this.isOpen = true;
 	},
 
 	addButton : function(x, y, title, section, selection){
@@ -120,6 +132,8 @@ Menu.prototype = {
 		if(cont.selection.type){
 			if(cont.selection.type === 'item'){
 				_com.inventory.selectItem(cont.selection);
+				_com.actionMenu.switchAction(_com.actionMenu.item);
+				this.destroy();
 			}
 		}
 		//If the button performs function
@@ -143,12 +157,24 @@ Menu.prototype = {
 			context.menuGrp.destroy();
 			context.menuGrp = null;
 		}
+		this.isOpen = false;
+		this.selection = 'main';
+	},
+
+	refresh : function(){
+		if(this.menuGrp !== null){
+			this.menuGrp.destroy();
+			this.menuGrp = null;
+		}
+		this.isOpen = false;
 	},
 
 	destroy : function(){
 		if(this.menuGrp !== null){
 			this.menuGrp.destroy();
 			this.menuGrp = null;
-		} 
+		}
+		this.isOpen = false;
+		this.selection = 'main';
 	}
 }

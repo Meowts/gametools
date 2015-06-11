@@ -40,6 +40,12 @@ Items.prototype = {
 		}
 	},
 
+	consumeSelectedItem : function(){
+		_com.actionMenu.removeDisplayedItem();
+		_com.inventory.removeCurrentlySelected();
+		_com.menu.updateInventory();
+	},
+
 	destroy : function(){
 		GFN.hideGroup(this.itemGrp);
 	}

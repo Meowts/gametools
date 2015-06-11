@@ -40,12 +40,15 @@ Action.prototype = {
 	},
 
 	item : function(entity){
-		var returnFun = _com.items.checkPairing(entity);
+		//If there's a currently selected item
+		if(_com.inventory.currentlySelected !== null){
+			var returnFun = _com.items.checkPairing(entity);
 
-		if(returnFun !== null){
-			GFN.exec(returnFun, _com.actionFunctions);
-		}else{
-			_com.dialog.show("This does nothing.");
+			if(returnFun !== null){
+				GFN.exec(returnFun, _com.actionFunctions);
+			}else{
+				_com.dialog.show("This does nothing.");
+			}
 		}
 	},
 

@@ -27,8 +27,13 @@ Player.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.setSize(this.sprite.width-30, 10, 0, this.sprite.height-65);
 
-		//Give it a type identifier
+		//Give it some identifiers
 		this.sprite.type = 'player';
+		this.sprite.id = 'player';
+
+		//Allow stuff to happen on the player (mouse input)
+		this.sprite.inputEnabled = true;
+		this.sprite.events.onInputDown.add(GFN.performAction, this);
 
 		//Add animations
 		this.sprite.animations.add(this.walkingAnim);

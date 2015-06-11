@@ -16,6 +16,7 @@ Screen.ActionTest.prototype = {
 	},
 
 	update : function(){
+		_com.player.update();
 	},
 
 	render : function(){},

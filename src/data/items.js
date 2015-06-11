@@ -34,5 +34,17 @@ for(var item in Data.Items){
 Data.Items.On = {
 	'test1_test2' : {
 		result : 'test1_test2'
+	},
+
+	'test2_test3' : {
+		result : 'test2_test3'
+	},
+
+	'player_test1' : {
+		result : 'player_test1'
+	},
+	
+	'player_test2' : {
+		result : 'player_test2'
 	}
 }

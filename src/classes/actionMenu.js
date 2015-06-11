@@ -120,7 +120,7 @@ ActionMenu.prototype = {
 	},
 
 	placeItem : function(item){
-		this.removeItem();
+		this.removeDisplayedItem();
 
 		//Get the center of the item box
 		var x = this.item.width/2;
@@ -132,7 +132,11 @@ ActionMenu.prototype = {
 		this.item.addChild(this.displayedItem);
 	},
 
-	removeItem : function(){
-		if(this.displayedItem !== null) this.displayedItem.destroy();
+	removeDisplayedItem : function(){
+		if(this.displayedItem !== null){
+			if(this.displayedItem.alive){
+				this.displayedItem.kill();
+			}
+		} 
 	}
 }
