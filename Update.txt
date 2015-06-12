@@ -73,6 +73,12 @@ in Windows
 
 4. Once everything's install you might need to restart.
 
+5. It will want you to set a username and email so it knows who's the one
+making commits. Run:
+
+git config --global user.name "Jon Jorgenson"
+git config --global user.email "jj@peemail.com"
+
 ############
 Get project:
 ############
@@ -107,12 +113,20 @@ erased when you pull. This is where it's good to know about committing changes.
 Commit:
 ############
 
-1. In the root of the project, run:
+1. Before being able to commit to Github, you'll need to create a Github account. See below
+
+2. In the root of the project, run:
 
 git add -A :/
 git commit -m "Look what I did"
 git push origin master
 
-2. This will update the master copy on Github - actually not the best practise,
+3. This will update the master copy on Github - actually not the best practise,
 but we can get into branching at a later date once everything mentioned here is
 well understood.
+
+############
+Github User:
+############
+
+1. Go to http://github.com and create an account.
