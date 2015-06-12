@@ -100,11 +100,19 @@ git pull origin master
 
 2. Dunn.
 
-**Be aware that if you have made any changes to the files, pulling will erase your changes
-(in fact it might not even let you until you commit your changes, ). 
+**Be aware that if you have made any changes to the files, they might end up being
+erased when you pull. This is where it's good to know about committing changes.
 
 ############
 Commit:
 ############
 
-(Coming soon )
+1. In the root of the project, run:
+
+git add -A :/
+git commit -m "Look what I did"
+git push origin master
+
+2. This will update the master copy on Github - actually not the best practise,
+but we can get into branching at a later date once everything mentioned here is
+well understood.
