@@ -46,6 +46,7 @@ Tools.Main.prototype = {
 	},
 
 	comObjects : function(){
+		//This gives global access to all of the "Global object containers"
 		_com.player = this._player;
 		_com.controller = this._controller;
 		_com.menu = this._menu;

@@ -1,3 +1,9 @@
+/**
+*
+*	@class Items
+*
+*/
+
 var Items = function(game){
 	this.game = game;
 
@@ -21,6 +27,8 @@ Items.prototype = {
 				Data.Screen[Global.CS].items[item].ref.sprite
 			);
 
+			itemX.anchor.setTo(0.5, 0.5);
+
 			itemX.id = item;
 			itemX.type = 'item';
 			itemX.inputEnabled = true;
@@ -31,13 +39,15 @@ Items.prototype = {
 	},
 
 	checkPairing : function(entity){
-		if(Data.Items.On.hasOwnProperty(entity.id+'_'+_com.inventory.currentlySelected.id)){
-			return Data.Items.On[entity.id + '_' + _com.inventory.currentlySelected.id].result;
-		}else if(Data.Items.On.hasOwnProperty(_com.inventory.currentlySelected.id+'_'+entity.id)){
-			return Data.Items.On[_com.inventory.currentlySelected.id + '_' + entity.id].result;
-		}else{
+		var entity_id = entity.id;
+		var currentItem_id = _com.inventory.currentlySelected.id;
+
+		if(_com.actionFunctions.__proto__.hasOwnProperty(entity_id + '_' + currentItem_id))
+			return entity_id + '_' + currentItem_id;
+		else if(_com.actionFunctions.__proto__.hasOwnProperty(currentItem_id + '_' + entity_id))
+			return currentItem_id + '_' + entity_id;
+		else
 			return null;
-		}
 	},
 
 	consumeSelectedItem : function(){

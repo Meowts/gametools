@@ -1,3 +1,15 @@
+/*
+
+	Items
+
+	item_name :
+		id : "[same as item_name]",
+		sprite : "[sprite key defined in /src/states/load.js]",
+		description : "Description that shows on inspect" (optional),
+		dialog : [dialog object defined in src//data/dialog.js] (optional),
+		collectable : true/false (optional, whether use action will acquire item or not)
+
+*/
 
 
 Data.Items = {
@@ -20,7 +32,6 @@ Data.Items = {
 	test3 : {
 		id : 'test3',
 		sprite : 'test3',
-		description : "This is the third test item. Non-Collectable",
 		dialog : Data.Dialog.item.test3,
 		collectable : false	
 	},	
@@ -29,22 +40,4 @@ Data.Items = {
 //Assign type identifier to all the items
 for(var item in Data.Items){
 	Data.Items[item].type = 'item';
-}
-
-Data.Items.On = {
-	'test1_test2' : {
-		result : 'test1_test2'
-	},
-
-	'test2_test3' : {
-		result : 'test2_test3'
-	},
-
-	'player_test1' : {
-		result : 'player_test1'
-	},
-	
-	'player_test2' : {
-		result : 'player_test2'
-	}
 }

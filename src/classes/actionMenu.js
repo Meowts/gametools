@@ -1,3 +1,9 @@
+/**
+*
+*	@class ActionMenu
+*
+*/
+
 var ActionMenu = function(game){
 	this.game = game;
 

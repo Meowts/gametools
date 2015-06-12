@@ -1,3 +1,24 @@
+/**
+*
+*	@class ActionFunctions
+*
+*/
+
+/*
+
+	Each action function is named as:
+
+	entity1_entity2
+
+	The body of the function defines what happens when the two entities interact.
+
+	TODO: Probably will end up seperating this class into:
+		"ItemFunctions" (soley item->item, item->player, item->npc), 
+		"SpellFunctions" (soley spell->item, spell->player, spell->npc),
+		"LevelFunctions (mechanics of advancing the game)"
+
+*/
+
 var ActionFunctions = function(game){
 	this.game = game;
 }

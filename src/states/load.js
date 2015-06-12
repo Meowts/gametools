@@ -47,11 +47,6 @@ Tools.Load.prototype = {
 		this.game.load.spritesheet('am-item', '/assets/amItem.png', 210, 100, 2);
 		this.game.load.spritesheet('am-menu', '/assets/amMenu.png', 94, 100, 2);
 
-		//Action icons
-		this.game.load.image('hamFist', '/assets/hamFist.png');
-		this.game.load.image('bubs', '/assets/bubs.png');
-		this.game.load.image('peeper', '/assets/peeper.png');
-
 		//Test sprites
 		this.game.load.image('bg', '/assets/bg.png');
 		this.game.load.image('land', '/assets/land.png');

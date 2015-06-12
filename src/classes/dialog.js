@@ -1,3 +1,9 @@
+/**
+*
+*	@class Dialog
+*
+*/
+
 var Dialog = function(game){
 	this.game = game;
 
@@ -91,12 +97,13 @@ Dialog.prototype = {
 	},
 
 	show : function(dialog, x, y){
-		//Place overlay over action menu and disable input
-		_com.actionMenu.disable();
-		_com.controller.disable();
-
+		
 		//If there are multiple dialog lines it'll come as an object
 		if(typeof dialog !== "string"){
+			//Place overlay over action menu and disable input
+			_com.actionMenu.disable();
+			_com.controller.disable();
+			
 			this.queueDialog(dialog);
 			return;
 		}
@@ -149,6 +156,7 @@ Dialog.prototype = {
 		}
 	},
 
+	//Used when there is a queue of dialog
 	setupNext : function(){
 		if(this.timer !== null){
 			this.timer.stop();
@@ -160,6 +168,7 @@ Dialog.prototype = {
 		this.timer.start();	
 	},
 
+	//Used for the last in the dialog queue
 	startFade : function(){
 		this.fadeOut = this.game.add.tween(this.speechArea);
 		this.fadeOut.to({alpha : 0}, this.fadeDuration, Phaser.Easing.linear);
@@ -181,6 +190,6 @@ Dialog.prototype = {
 	},
 
 	clearSpeech : function(){
-		if(this.speechArea !== null) this.speechArea.destroy();
+		if(this.speechArea !== null) this.speechArea.kill();
 	}
 }

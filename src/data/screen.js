@@ -1,3 +1,24 @@
+/*
+
+	Screen
+
+	Screen.ScreenName : 
+		keyboardEnabled : true/false,
+
+		items : 
+			item_name : 
+				ref : Data.Items.item_name,
+				x : [int],
+				y : [int]
+			item_name : 
+				...
+				...
+				...
+
+		*coming soon* : npc, player
+
+*/
+
 Data.Screen = {};
 
 Data.Screen.MainMenu = {

@@ -1,3 +1,9 @@
+/**
+*
+*	@class Action
+*
+*/
+
 var Action = function(game){
 	this.game = game;
 
@@ -19,10 +25,13 @@ Action.prototype = {
 
 	talk : function(entity){
 		if(entity.type === 'item'){
+			var x = entity.x;
+			var y = entity.y - 100;
+
 			if(Data.Items[entity.id].dialog !== null && Data.Items[entity.id].dialog !== undefined){
-				var x = entity.x;
-				var y = entity.y - 100;
 				_com.dialog.show(Data.Items[entity.id].dialog, x, y);
+			}else{
+				_com.dialog.show(entity.id + " has nothing to say.", x, y);
 			}
 		}
 	},
@@ -31,6 +40,9 @@ Action.prototype = {
 		if(entity.type === 'item'){
 			if(Data.Items[entity.id].description !== null && Data.Items[entity.id].description !== undefined){
 				_com.dialog.show(Data.Items[entity.id].description);
+			}
+			else{
+				_com.dialog.show("Nothing to see here.");
 			}
 		}
 	},

@@ -1,0 +1,45 @@
+##########################
+##########################
+
+		Content
+
+##########################
+##########################
+
+Here's an overview of where the game's content lives.
+
+
+Sprites/Spritesheet
+##########################
+
+Loaded in /src/states/load.js
+
+
+Items
+##########################
+
+Defined in /src/data/items.js
+
+
+Spells
+##########################
+
+Defined in /src/data/spells.js
+
+
+Dialog
+##########################
+
+Defined in /src/data/dialog.js
+
+
+Screen
+##########################
+
+Defined in /src/data/screen.js
+
+
+ActionFunctions
+##########################
+
+Defined in /src/classes/actionFunctions.js

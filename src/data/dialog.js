@@ -1,4 +1,27 @@
 
+/*
+	The game's dialog
+
+	Dialog is seperated by which type of entity you're conversing with.
+	
+	"One-Off" dialog
+	----------------
+	entity_id : "what they say" 
+
+
+	"Continued" dialog
+	------------------
+	entity_id : 
+		index : 
+			character : "entity_id",
+			type : "type",
+			text : 'what they say'
+		index : 
+			...
+			...
+			...
+*/
+
 
 Data.Dialog = {
 	npc : {
@@ -6,8 +29,8 @@ Data.Dialog = {
 	},
 
 	item : {
-		test : "You can't talk to a test object, dummy",
-		test2 : "The test object blinks and stares",
+		test : "The test object blinks and stares",
+
 		test3 : {
 			1 : {
 				character : 'test3',

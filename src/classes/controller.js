@@ -32,14 +32,6 @@ var Controller = function(game){
 	this.mouse = null;
 
 	this.cursor = null;
-
-	this.currentCursor = 'hamFist';
-
-	this.cursors = {
-		use : 'hamFist',
-		talk : 'bubs',
-		see : 'peeper'
-	}
 }
 
 Controller.prototype = {

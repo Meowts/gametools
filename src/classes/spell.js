@@ -1,3 +1,9 @@
+/**
+*
+*	@class Spell
+*
+*/
+
 var Spell = function(game){
 	this.game = game;
 
