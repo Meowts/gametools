@@ -24,8 +24,9 @@ var Dialog = function(game){
 	this.yAboveChar = 100;
 
 	this.showDuration = null;
+	this.minimumDuration = 2000;
 	this.durationMultiplier = 80;
-	this.fadeDuration = 1200;
+	this.fadeDuration = 100;
 
 	this.timer = null;
 	this.style = {font: '16px Consolas', align: 'center'};
@@ -42,6 +43,8 @@ Dialog.prototype = {
 
 		//Get a good showing duration based on the length
 		this.showDuration = length * this.durationMultiplier;
+
+		if(this.showDuration < this.minimumDuration) this.showDuration = this.minimumDuration;
 
 		//Get the line with the longest length to determine width
 		if(this.numLines > 1){
@@ -88,7 +91,11 @@ Dialog.prototype = {
 	},
 
 	show : function(dialog, x, y){
+		//Place overlay over action menu and disable input
+		_com.actionMenu.disable();
+		_com.controller.disable();
 
+		//If there are multiple dialog lines it'll come as an object
 		if(typeof dialog !== "string"){
 			this.queueDialog(dialog);
 			return;
@@ -101,6 +108,7 @@ Dialog.prototype = {
 
 		this.speechArea.addChild(this.text);
 
+		//If there is a dialog queue, step through it, otherwise just go with the fade
 		if(this.dialogQueue !== []){
 			this.queueLength--;
 			this.queueIndex++;
@@ -108,6 +116,7 @@ Dialog.prototype = {
 			if(this.queueLength > 0){
 				this.setupNext();
 			}else{
+				//Blast the dialog queue
 				this.dialogQueue = [];
 				this.startFade();
 			}
@@ -127,18 +136,8 @@ Dialog.prototype = {
 		this.converse();
 	},
 
-	setupNext : function(){
-		if(this.timer !== null){
-			this.timer.stop();
-			this.timer.destroy();
-		}
-
-		this.timer = this.game.time.create();
-		this.timer.add(this.showDuration, this.converse, this);
-		this.timer.start();	
-	},
-
 	converse : function(){
+		//Find the appropriete entity to display the dialog over
 		if(this.dialogQueue[this.queueIndex].type === 'player'){
 			var x = _com.player.sprite.x;
 			var y = _com.player.sprite.y - this.yAboveChar;
@@ -148,6 +147,17 @@ Dialog.prototype = {
 			var y = _com.items.getByProperty('id', this.dialogQueue[this.queueIndex].character).y - this.yAboveChar;
 			this.show(this.dialogQueue[this.queueIndex].text, x, y)
 		}
+	},
+
+	setupNext : function(){
+		if(this.timer !== null){
+			this.timer.stop();
+			this.timer.destroy();
+		}
+
+		this.timer = this.game.time.create();
+		this.timer.add(this.showDuration, this.converse, this);
+		this.timer.start();	
 	},
 
 	startFade : function(){
@@ -161,11 +171,13 @@ Dialog.prototype = {
 
 		this.timer = this.game.time.create();
 		this.timer.add(this.showDuration, this.fade, this);
-		this.timer.start();		
+		this.timer.start();
 	},
 
 	fade : function(){
 		this.fadeOut.start();
+		_com.actionMenu.enable();
+		_com.controller.enable();
 	},
 
 	clearSpeech : function(){

@@ -2,6 +2,10 @@ var ActionMenu = function(game){
 	this.game = game;
 
 	this.baseSprite = 'am-base';
+	this.overlaySprite = 'am-overlay';
+
+	this.base = null;
+	this.overlay = null;
 
 	this.use = null;
 	this.talk = null;
@@ -66,8 +70,8 @@ ActionMenu.prototype = {
 		this.amGrp = this.game.add.group();
 
 		//Menu BG
-		var base = this.game.add.sprite(0, 0, this.baseSprite);
-		this.amGrp.add(base);
+		this.base = this.game.add.sprite(0, 0, this.baseSprite);
+		this.amGrp.add(this.base);
 
 		//Create buttons
 		var x = 0;
@@ -91,6 +95,11 @@ ActionMenu.prototype = {
 			x++
 		}
 
+		//Disable overlay
+		this.overlay = this.game.add.sprite(0, 0, this.overlaySprite);
+		this.overlay.kill();
+		this.amGrp.add(this.overlay);
+
 		//Keep it all up there
 		this.amGrp.setAll('fixedToCamera', true);
 
@@ -100,10 +109,19 @@ ActionMenu.prototype = {
 
 	drawMenu : function(){
 		GFN.showGroup(this.amGrp);
+		this.enable();
 	},
 
 	hideMenu : function(){
 		GFN.hideGroup(this.amGrp);
+	},
+
+	disable : function(){
+		if(!this.overlay.alive) this.overlay.revive();
+	},
+
+	enable : function(){
+		if(this.overlay.alive) this.overlay.kill();
 	},
 
 	switchAction : function(item){

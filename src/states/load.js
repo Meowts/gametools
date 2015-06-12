@@ -39,6 +39,7 @@ Tools.Load.prototype = {
 
 		//Action menu
 		this.game.load.image('am-base', '/assets/amBase.png');
+		this.game.load.image('am-overlay', '/assets/amOverlay.png');
 		this.game.load.spritesheet('am-use', '/assets/amUse.png', 170, 100, 2);
 		this.game.load.spritesheet('am-talk', '/assets/amTalk.png', 170, 100, 2);
 		this.game.load.spritesheet('am-see', '/assets/amSee.png', 170, 100, 2);

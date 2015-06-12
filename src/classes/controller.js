@@ -107,11 +107,43 @@ Controller.prototype = {
 	setKey : function(control){
 		this.controls[control] = this.getKey();
 		this.keyboard.onDownCallback = null;
-	}
+	},
+
+	disableKeyboard : function(){
+		this.keyboard.enabled = false;
+	},
+
+	enableKeyboard : function(){
+		this.keyboard.enabled = true;
+	},
 
 	/*
 	*
 	*	Mouse
 	*
 	*/
+
+	disableMouse : function(){
+		this.mouse.enabled = false;
+	},
+
+	enableMouse : function(){
+		this.mouse.enabled = true;
+	},
+
+	/*
+	*
+	*	Both
+	*
+	*/
+
+	disable : function(){
+		this.disableKeyboard();
+		this.disableMouse();
+	},
+
+	enable : function(){
+		this.enableKeyboard();
+		this.enableMouse();
+	}
 }
