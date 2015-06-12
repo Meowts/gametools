@@ -10,7 +10,7 @@
 
 */
 
-var Data.Spells = {}
+Data.Spells = {}
 
 //Assign type identifier to all the spells
 for(var spell in Data.Spells){

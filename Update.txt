@@ -2,10 +2,65 @@
 	Update Instructions
 ##########################
 
+Source control is managed with Git, hosted by Github at https://github.com/Meowts/toolps.git
+
+############
+Intro:
+############
+
+What the hell is Git?
+
+Git is a source control repository system. It's massive, impressive, and used by many people
+either professionally or otherwise for source control. It can do a lot of things, but for basic
+day to day usage it's pretty simple.
+
+Think of Git like a backup database/system. Github is simply a place that holds all of those backups, 
+and is also a huge impressive system in its own. You can create branches, so that changes made on one
+branch are not made on another so that your work isn't going to mess up someone elses' work while you're
+in the middle of developing something.
+
+One thing to understand is that Git is "decentralized". Got it? What that means is, when you have a copy
+of the project, it'll have its own .git file, which is seperate from the .git file hosted on Github. So
+it's like, you have your local .git, I have my local .git, and Github has a .git, all of the same repository.
+When I push changes to Github, Github will say "Hey dude, your .git is different than my .git, let's merge" and
+so once you've pushed your changes and there are no conflicts, your .git and Github's .git will look the same.
+
+It works like this:
+- You've got a bunch of files
+- You have a .git file at the root of the project that is basically a "snapshot" of what all of those files 
+contain, line for line, character for character (including hidden characters like line-breaks).
+- You make changes to a file
+- You'll want to "commit" the change - which means updating the snapshot to include all the changes you've just made
+- When you do so, Git will be like:
+	"Oh hey, right now thisfile.txt on line 23 says 'Eat more {food}', but in the .git file it's 
+	recorded that is says 'Eat more cheese'. There's a difference wtf m8 I ain't doin' shit"
+- So first you must register the changes you have to "add" the files so Git is aware of the changes, then commit
+- Once it's committed, the final step is to "push" the changes to Github so that the changes are in the cloud
+
+It's basically like hitting save, but on the cloud (Github) and keeping track of every change you make.
+It's mostly useful for coding, because you can be like "I'm gonna make this change because I'm smart",
+and then a few days later be like "oh fuck I'm not smart I just broke half the program, what was I doing
+before?" So you can just look up what the changes were. Image files, rather than showing a difference between 
+each pixel location, will just rewrite the whole files - but you can still look back at the old versions of 
+the files and bring them back.
+
+There are GUI programs for committing, pushing/pulling etc, but the command line is (IMO) the safest and
+easiest way of doing it.
+
+Typical Workflow:
+
+1. git pull origin [branch]				: Always start with the latest copy
+2. (Make changes to files)				: Kick it
+3. git add -A :/						: You can add files individually, but this will just add all files changed
+4. git commit -m "here's what I did"	: Commit locally, give a brief description of the changes made
+5. git push origin [branch]				: Push it to Github
+
+
 ############
 Install Git:
 ############
 
+(For Windows)
 1. Go to http://git-scm.com/download/win
 
 2. It'll download automatically, run the .exe
@@ -13,7 +68,8 @@ Install Git:
 3. Go through the installation, defaults should be fine.
 
 **There will be an option to install GitBash - make sure you get it,
-you will need it
+you will need it. It's a CLI that allows you to use the git commands
+in Windows
 
 4. Once everything's install you might need to restart.
 
@@ -23,23 +79,32 @@ Get project:
 
 1. Run GitBash, cd to where you want the project to go.
 
-2. If you had downloaded it before as a .zip, the .git file isn't there (see below).
+2. When you downloaded the project as a .zip, the .git file won't be there.
 So you'll need to run:
 
 git clone https://github.com/Meowts/toolps.git
 
-: and as a result it will download the full project in whatever folder you are in.
+: and as a result it will download the full project in whatever folder you are in
+(ie: if you're in C:\stuff\ when you run the command, it will create the directory
+C:\stuff\toolps)
 
 3. That's it, to run just go into the project like normal and run npm start
-
-############
-Commit:
-############
-
-(Coming soon)
 
 ############
 Update:
 ############
 
-(Coming soon)
+1. In the root of the project, run:
+
+git pull origin master
+
+2. Dunn.
+
+**Be aware that if you have made any changes to the files, pulling will erase your changes
+(in fact it might not even let you until you commit your changes, ). 
+
+############
+Commit:
+############
+
+(Coming soon )

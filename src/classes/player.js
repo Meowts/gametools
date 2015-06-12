@@ -9,6 +9,9 @@ var Player = function(game){
 
 	this.sprite = null;
 
+	this.name_upper = "Player";
+	this.name_lower = "player";
+
 	this.inputEnabled = true;
 
 	this.walkingAnim = 'walkingAnimation';
