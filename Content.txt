@@ -9,37 +9,70 @@
 Here's an overview of where the game's content lives.
 
 
-Sprites/Spritesheet
+
+##########################
+		Sprites
 ##########################
 
+These are the images and animation sheets used in the game.
+
+Stored in /assets
 Loaded in /src/states/load.js
 
 
-Items
+
 ##########################
+		Items
+##########################
+
+Items are the interactable objects in the game. The base definition
+and whether they are collectable or not is in its data file, and the
+actions come as a result of using them is considered an "ActionFunction"
+(see below).
 
 Defined in /src/data/items.js
 
 
-Spells
+
 ##########################
+		Spells
+##########################
+
+im a wizzerd! Spells are essentially items, except that they have
+a slightly different behavior (as of 06/12/2015, they might actually
+be identical to items but I'll keep them organized on their own).
 
 Defined in /src/data/spells.js
 
 
-Dialog
+
 ##########################
+		Dialog
+##########################
+
+All of the Item, Player and NPC dialog in the game.
 
 Defined in /src/data/dialog.js
 
 
-Screen
+
 ##########################
+		Screen
+##########################
+
+Definition of Item, Player and NPC placement, attributes of the
+screen. WIP as to what exactly will be defined.
 
 Defined in /src/data/screen.js
 
 
-ActionFunctions
+
 ##########################
+	ActionFunctions
+##########################
+
+The meat and potatoes of what actually happens when an item or
+spell is used in the game. This is the fun part, and as the comments
+of the top of the file say, this might be further separated.
 
 Defined in /src/classes/actionFunctions.js

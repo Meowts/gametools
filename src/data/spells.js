@@ -6,6 +6,8 @@
 		id : "[same as item_name]",
 		sprite : "[sprite key defined in /src/states/load.js]",
 
+	TODO: Actually make spells lololololol
+
 */
 
 var Data.Spells = {}
