@@ -1,0 +1,45 @@
+##########################
+	Update Instructions
+##########################
+
+############
+Install Git:
+############
+
+1. Go to http://git-scm.com/download/win
+
+2. It'll download automatically, run the .exe
+
+3. Go through the installation, defaults should be fine.
+
+**There will be an option to install GitBash - make sure you get it,
+you will need it
+
+4. Once everything's install you might need to restart.
+
+############
+Get project:
+############
+
+1. Run GitBash, cd to where you want the project to go.
+
+2. If you had downloaded it before as a .zip, the .git file isn't there (see below).
+So you'll need to run:
+
+git clone https://github.com/Meowts/toolps.git
+
+: and as a result it will download the full project in whatever folder you are in.
+
+3. That's it, to run just go into the project like normal and run npm start
+
+############
+Commit:
+############
+
+(Coming soon)
+
+############
+Update:
+############
+
+(Coming soon)
