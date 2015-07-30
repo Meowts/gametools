@@ -16,10 +16,10 @@ Screen.SpriteTest.prototype = {
 		_com.player.init(this.game.world.width/2, this.game.world.height/2);
 
 		this.instructionText = this.game.add.text(
-			Data[Global.CS].copy.instructions.x,
-			Data[Global.CS].copy.instructions.y,
-			Data[Global.CS].copy.instructions.text,
-			Data[Global.CS].copy.instructions.font 
+			Data.Screen[Global.CS].copy.instructions.x,
+			Data.Screen[Global.CS].copy.instructions.y,
+			Data.Screen[Global.CS].copy.instructions.text,
+			Data.Screen[Global.CS].copy.instructions.font 
 		);
 
 		this.timer = this.game.time.create(false);
