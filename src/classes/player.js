@@ -28,7 +28,7 @@ Player.prototype = {
 		//Enable physics body, set bounding box
 		this.game.physics.arcade.enable(this.sprite);
 		this.sprite.body.collideWorldBounds = true;
-		this.sprite.body.setSize(this.sprite.width-30, 10, 0, this.sprite.height-65);
+		this.sprite.body.setSize(this.sprite.width-30, 10, 0, this.sprite.height-140);
 
 		//Give it some identifiers
 		this.sprite.type = 'player';

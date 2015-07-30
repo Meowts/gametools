@@ -28,7 +28,8 @@ Tools.Load.prototype = {
 		*
 		*/
 
-		this.game.load.spritesheet('walkingSprites', '/assets/filename.png', 100, 100, 5);
+		//this.game.load.spritesheet('walkingSprites', '/assets/filename.png', 100, 100, 5);
+		this.game.load.spritesheet('walkingSprites', '/assets/sheets/walking.png', 250, 250, 8);
 
 		this.game.load.spritesheet('button', '/assets/button.png', 150, 75, 2);
 
