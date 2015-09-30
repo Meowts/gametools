@@ -21,7 +21,8 @@ var Global = {
 	}
 };
 
-//Container to hold independant objects that have controls in multiple places (filled in main state)
+//Container to hold independant objects that can be accessed globally.
+//Assignment of _com objects happens in /states/main.js
 var _com = {};
 
 //Initialize Phaser game object

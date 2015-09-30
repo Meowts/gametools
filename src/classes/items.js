@@ -27,11 +27,14 @@ Items.prototype = {
 				Data.Screen[Global.CS].items[item].ref.sprite
 			);
 
-			itemX.anchor.setTo(0.5, 0.5);
+			itemX.anchor.setTo(0.5, 0.5);			
 
 			itemX.id = item;
 			itemX.type = 'item';
+			
 			itemX.inputEnabled = true;
+			itemX.input.priorityID = 2;
+
 			itemX.events.onInputDown.add(GFN.performAction, this);
 
 			this.itemGrp.add(itemX);

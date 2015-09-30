@@ -14,6 +14,7 @@ var Screen = {
 
 //Misc helper functions (Global Functions)
 var GFN = {
+	
 	//Return the count of items in an object
 	count : function(obj){
 		var total = 0;

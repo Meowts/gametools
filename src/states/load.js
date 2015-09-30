@@ -29,35 +29,35 @@ Tools.Load.prototype = {
 		*/
 
 		//this.game.load.spritesheet('walkingSprites', '/assets/filename.png', 100, 100, 5);
-		this.game.load.spritesheet('walkingSprites', '/assets/sheets/walking.png', 250, 250, 8);
+		this.game.load.spritesheet('walkingSprites', './assets/sheets/walking.png', 250, 250, 8);
 
-		this.game.load.spritesheet('button', '/assets/button.png', 150, 75, 2);
+		this.game.load.spritesheet('button', './assets/button.png', 150, 75, 2);
 
 		//Side menu
-		this.game.load.spritesheet('menu-top', '/assets/menu-top.png', 150, 30, 2);
-		this.game.load.spritesheet('menu-mid', '/assets/menu-mid.png', 150, 30, 2);
-		this.game.load.spritesheet('menu-bottom', '/assets/menu-bottom.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-top', './assets/menu-top.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-mid', './assets/menu-mid.png', 150, 30, 2);
+		this.game.load.spritesheet('menu-bottom', './assets/menu-bottom.png', 150, 30, 2);
 
 		//Action menu
-		this.game.load.image('am-base', '/assets/amBase.png');
-		this.game.load.image('am-overlay', '/assets/amOverlay.png');
-		this.game.load.spritesheet('am-use', '/assets/amUse.png', 170, 100, 2);
-		this.game.load.spritesheet('am-talk', '/assets/amTalk.png', 170, 100, 2);
-		this.game.load.spritesheet('am-see', '/assets/amSee.png', 170, 100, 2);
-		this.game.load.spritesheet('am-spell', '/assets/amSpell.png', 210, 100, 2);
-		this.game.load.spritesheet('am-item', '/assets/amItem.png', 210, 100, 2);
-		this.game.load.spritesheet('am-menu', '/assets/amMenu.png', 94, 100, 2);
+		this.game.load.image('am-base', './assets/amBase.png');
+		this.game.load.image('am-overlay', './assets/amOverlay.png');
+		this.game.load.spritesheet('am-use', './assets/amUse.png', 170, 100, 2);
+		this.game.load.spritesheet('am-talk', './assets/amTalk.png', 170, 100, 2);
+		this.game.load.spritesheet('am-see', './assets/amSee.png', 170, 100, 2);
+		this.game.load.spritesheet('am-spell', './assets/amSpell.png', 210, 100, 2);
+		this.game.load.spritesheet('am-item', './assets/amItem.png', 210, 100, 2);
+		this.game.load.spritesheet('am-menu', './assets/amMenu.png', 94, 100, 2);
 
 		//Test sprites
-		this.game.load.image('bg', '/assets/bg.png');
-		this.game.load.image('land', '/assets/land.png');
+		this.game.load.image('bg', './assets/bg.png');
+		this.game.load.image('land', './assets/land.png');
 
-		this.game.load.image('boundsBG', '/assets/boundsBG.png');
-		this.game.load.image('boundsFloor', '/assets/boundsFloor.png');
+		this.game.load.image('boundsBG', './assets/boundsBG.png');
+		this.game.load.image('boundsFloor', './assets/boundsFloor.png');
 
-		this.game.load.image('test1', '/assets/test1.png');
-		this.game.load.image('test2', '/assets/test2.png');
-		this.game.load.image('test3', '/assets/test3.png');
+		this.game.load.image('test1', './assets/test1.png');
+		this.game.load.image('test2', './assets/test2.png');
+		this.game.load.image('test3', './assets/test3.png');
 	},
 
 	create : function(){

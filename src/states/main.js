@@ -21,7 +21,7 @@ Tools.Main.prototype = {
 		//Physics lol
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-		//Global object
+		//Game objects
 		this._player = new Player(this.game);
 		this._controller = new Controller(this.game);
 		this._items = new Items(this.game);
@@ -33,7 +33,7 @@ Tools.Main.prototype = {
 		this._actionFunctions = new ActionFunctions(this.game);
 		this._dialog = new Dialog(this.game);
 
-		//Add global objects to object pool
+		//Add game objects to object pool (_com)
 		this.comObjects();
 
 		//Run necessary initialization
@@ -82,6 +82,7 @@ Tools.Main.prototype = {
 
 		//Enable/Disable input for the screen
 		this._controller.keyboard.enabled = Data.Screen[Global.CS].keyboardEnabled;
+		
 		//Mouse Input when the time comes
 
 		//Set screen
