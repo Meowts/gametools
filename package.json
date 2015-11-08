@@ -6,8 +6,8 @@
   "scripts": {
     "build": "grunt concat",
     "watch": "grunt watch",
-    "build-watch": "npm run build && npm run watch",
-    "start": "node server.js",
+    "dev": "npm run build && npm run watch",
+    "start": "node server.js"
   },
   "author": "Benji Glove",
   "license": "ISC",

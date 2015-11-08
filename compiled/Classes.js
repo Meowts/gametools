@@ -322,7 +322,15 @@ Class.Controller = function(game){
 		toggleMenu : Phaser.Keyboard.E,
 
 		miscToggle : Phaser.Keyboard.SPACE
-	}
+	};
+
+	this.directions = {
+		UP : 'UP',
+		DOWN : 'DOWN',
+		LEFT : 'LEFT',
+		RIGHT : 'RIGHT',
+		STILL : 'STILL'
+	};
 
 	this.keys = {};
 
@@ -371,17 +379,18 @@ Class.Controller.prototype = {
 		this.menuKey.onDown.add(_com.player.toggleMenu, _com.player);
 	},
 
-	handleInput : function(){
+	move : function(object, direction){
+
 		//Walking
 		if(this.keys.upKey.isDown || this.keys.downKey.isDown || this.keys.leftKey.isDown || this.keys.rightKey.isDown){
-			if(this.keys.upKey.isDown) 			_com.player.moveUp();
-			if(this.keys.downKey.isDown)		_com.player.moveDown();
-			if(this.keys.leftKey.isDown) 		_com.player.moveLeft();
-			if(this.keys.rightKey.isDown) 		_com.player.moveRight();
+			if(this.keys.upKey.isDown) 			object.move(this.directions.UP);
+			if(this.keys.downKey.isDown)		object.move(this.directions.DOWN);
+			if(this.keys.leftKey.isDown) 		object.move(this.directions.LEFT);
+			if(this.keys.rightKey.isDown) 		object.move(this.directions.RIGHT);
 		}
 		else{
-			_com.player.stopWalking();
-		}
+			object.move(this.directions.STILL);
+		}		
 	},
 
 	listenForKey : function(){
@@ -955,6 +964,7 @@ Class.Player = function(game){
 	this.walkingAnim = 'walkingAnimation';
 	this.frameRate = 10;
 	this.walkSpeed = 5;
+	this.moveDirection = 'STILL';
 }
 
 Class.Player.prototype = {
@@ -984,7 +994,7 @@ Class.Player.prototype = {
 	},
 
 	update : function(){
-		if(this.inputEnabled) _com.controller.handleInput();
+		if(this.inputEnabled) _com.controller.move(this, this.moveDirection);
 	},
 
 	/*
@@ -993,35 +1003,43 @@ Class.Player.prototype = {
 	*
 	*/
 
-	moveUp : function(){
+	move : function(direction){
+		this[direction]();
+	},
+	
+	UP : function(){
 		this.sprite.body.y -= this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveDown : function(){
+	
+	DOWN : function(){
 		this.sprite.body.y += this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveLeft : function(){
+	
+	LEFT : function(){
 		if(this.sprite.scale.x > 0) this.sprite.scale.x = -1;
 		this.sprite.body.x -= this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveRight : function(){
+	
+	RIGHT : function(){
 		if(this.sprite.scale.x < 0) this.sprite.scale.x = 1;
 		this.sprite.body.x += this.walkSpeed;	
-		this.startWalking();
+		this.animationWalkStart();			
+	},
+	
+	STILL : function(){
+		this.animationWalkStop();
 	},
 
-	startWalking : function(){
+	animationWalkStart : function(){
 		if(!this.sprite.animations.currentAnim.isPlaying){
 			this.sprite.animations.play(this.walkingAnim, this.frameRate, true);
 		}
 	},
 
-	stopWalking : function(){
+	animationWalkStop : function(){
 		if(this.sprite.animations.currentAnim.isPlaying) this.sprite.animations.stop();
 		if(this.sprite.frame != 0) this.sprite.frame = 0;
 	},

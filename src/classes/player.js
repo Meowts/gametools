@@ -17,6 +17,7 @@ Class.Player = function(game){
 	this.walkingAnim = 'walkingAnimation';
 	this.frameRate = 10;
 	this.walkSpeed = 5;
+	this.moveDirection = 'STILL';
 }
 
 Class.Player.prototype = {
@@ -46,7 +47,7 @@ Class.Player.prototype = {
 	},
 
 	update : function(){
-		if(this.inputEnabled) _com.controller.handleInput();
+		if(this.inputEnabled) _com.controller.move(this, this.moveDirection);
 	},
 
 	/*
@@ -55,35 +56,43 @@ Class.Player.prototype = {
 	*
 	*/
 
-	moveUp : function(){
+	move : function(direction){
+		this[direction]();
+	},
+	
+	UP : function(){
 		this.sprite.body.y -= this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveDown : function(){
+	
+	DOWN : function(){
 		this.sprite.body.y += this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveLeft : function(){
+	
+	LEFT : function(){
 		if(this.sprite.scale.x > 0) this.sprite.scale.x = -1;
 		this.sprite.body.x -= this.walkSpeed;
-		this.startWalking();
+		this.animationWalkStart();
 	},
-
-	moveRight : function(){
+	
+	RIGHT : function(){
 		if(this.sprite.scale.x < 0) this.sprite.scale.x = 1;
 		this.sprite.body.x += this.walkSpeed;	
-		this.startWalking();
+		this.animationWalkStart();			
+	},
+	
+	STILL : function(){
+		this.animationWalkStop();
 	},
 
-	startWalking : function(){
+	animationWalkStart : function(){
 		if(!this.sprite.animations.currentAnim.isPlaying){
 			this.sprite.animations.play(this.walkingAnim, this.frameRate, true);
 		}
 	},
 
-	stopWalking : function(){
+	animationWalkStop : function(){
 		if(this.sprite.animations.currentAnim.isPlaying) this.sprite.animations.stop();
 		if(this.sprite.frame != 0) this.sprite.frame = 0;
 	},

@@ -9,15 +9,7 @@ var Global = {
 
 	//Switch used to signal a screen switch
 	switchScreen : false,
-
-	//All of the screens
-	Screens : {}
 };
-
-//Add screens to Global object
-for(var _screen in Screen){
-	Global.Screens[_screen] = Screen[_screen];
-}
 
 //Container to hold independant objects that can be accessed globally.
 //Assignment of _com objects happens in /states/main.js
