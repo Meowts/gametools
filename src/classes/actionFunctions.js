@@ -19,11 +19,11 @@
 
 */
 
-var ActionFunctions = function(game){
+Class.ActionFunctions = function(game){
 	this.game = game;
 }
 
-ActionFunctions.prototype = {
+Class.ActionFunctions.prototype = {
 
 	test1_test2 : function(){
 		_com.dialog.show("boom.");

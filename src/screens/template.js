@@ -1,4 +1,4 @@
-Screen.MainMenu = function(game){
+/*Screen.MainMenu = function(game){
 	this.game = game;
 
 	this.backBtn = null;
@@ -35,4 +35,4 @@ Screen.MainMenu.prototype = {
 	destroy : function(){
 		this.backBtn.destroy();
 	}
-}
+}*/

@@ -4,12 +4,19 @@
   "description": "Quick n' dirty BM",
   "main": "phaser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "grunt concat",
+    "watch": "grunt watch",
+    "build-watch": "npm run build && npm run watch",
+    "start": "node server.js",
   },
   "author": "Benji Glove",
   "license": "ISC",
   "dependencies": {
-  		"express" : "*"
+    "express": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-watch": "^0.6.1"
   }
 }

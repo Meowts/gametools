@@ -4,7 +4,7 @@
 *
 */
 
-var Dialog = function(game){
+Class.Dialog = function(game){
 	this.game = game;
 
 	this.speechArea = null;
@@ -38,7 +38,7 @@ var Dialog = function(game){
 	this.style = {font: '16px Consolas', align: 'center'};
 }
 
-Dialog.prototype = {
+Class.Dialog.prototype = {
 
 	drawSpeechArea : function(dialog, xDef, yDef){
 		this.clearSpeech();

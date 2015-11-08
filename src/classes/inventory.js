@@ -4,7 +4,7 @@
 *
 */
 
-var Inventory = function(game){
+Class.Inventory = function(game){
 	this.game = game;
 
 	this.items = {};
@@ -12,7 +12,7 @@ var Inventory = function(game){
 	this.currentlySelected = null;
 }
 
-Inventory.prototype = {
+Class.Inventory.prototype = {
 	setItems : function(items){
 		this.items = items;
 	},

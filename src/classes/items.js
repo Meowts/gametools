@@ -4,13 +4,13 @@
 *
 */
 
-var Items = function(game){
+Class.Items = function(game){
 	this.game = game;
 
 	this.itemGrp = null;
 }
 
-Items.prototype = {
+Class.Items.prototype = {
 
 	init : function(){
 		this.itemGrp = this.game.add.group();

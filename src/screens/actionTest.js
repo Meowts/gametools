@@ -26,7 +26,7 @@ Screen.ActionTest.prototype = {
 			Data.Common.back.x+40, 
 			Data.Common.back.y+70, 
 			Data.Common.back.sprite,
-			Screen.switchScreen, 
+			GFN.switchScreen, 
 			this, 
 			0, 0, 1
 		);

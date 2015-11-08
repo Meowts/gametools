@@ -4,7 +4,7 @@
 *
 */
 
-var Controller = function(game){
+Class.Controller = function(game){
 	this.game = game;
 
 	//Keyboard
@@ -34,7 +34,7 @@ var Controller = function(game){
 	this.cursor = null;
 }
 
-Controller.prototype = {
+Class.Controller.prototype = {
 
 	/*
 	*

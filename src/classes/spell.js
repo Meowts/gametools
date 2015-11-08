@@ -4,7 +4,7 @@
 *
 */
 
-var Spell = function(game){
+Class.Spell = function(game){
 	this.game = game;
 
 	this.currentSpell = null;
@@ -19,7 +19,7 @@ var Spell = function(game){
 	};
 }
 
-Spell.prototype = {
+Class.Spell.prototype = {
 	setSpells : function(spells){
 		this.availableSpells = spells;
 	},

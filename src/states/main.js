@@ -22,16 +22,16 @@ Tools.Main.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//Game objects
-		this._player = new Player(this.game);
-		this._controller = new Controller(this.game);
-		this._items = new Items(this.game);
-		this._inventory = new Inventory(this.game);
-		this._spells = new Spell(this.game);
-		this._menu = new Menu(this.game);
-		this._action = new Action(this.game);
-		this._actionMenu = new ActionMenu(this.game);
-		this._actionFunctions = new ActionFunctions(this.game);
-		this._dialog = new Dialog(this.game);
+		this._player = new Class.Player(this.game);
+		this._controller = new Class.Controller(this.game);
+		this._items = new Class.Items(this.game);
+		this._inventory = new Class.Inventory(this.game);
+		this._spells = new Class.Spell(this.game);
+		this._menu = new Class.Menu(this.game);
+		this._action = new Class.Action(this.game);
+		this._actionMenu = new Class.ActionMenu(this.game);
+		this._actionFunctions = new Class.ActionFunctions(this.game);
+		this._dialog = new Class.Dialog(this.game);
 
 		//Add game objects to object pool (_com)
 		this.comObjects();

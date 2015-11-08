@@ -14,7 +14,7 @@ Screen.MainMenu.prototype = {
 		for(var _screen in Global.Screens){
 			if(_screen != 'MainMenu'){
 				var button = this.game.add.button(this.game.world.centerX, y, 'button', 
-					Screen.switchScreen, 
+					GFN.switchScreen, 
 					this, 0, 0, 1, 0);
 
 				button.anchor.setTo(0.5, 0.5);

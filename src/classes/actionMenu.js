@@ -4,7 +4,7 @@
 *
 */
 
-var ActionMenu = function(game){
+Class.ActionMenu = function(game){
 	this.game = game;
 
 	this.baseSprite = 'am-base';
@@ -70,7 +70,7 @@ var ActionMenu = function(game){
 	this.amGrp = null;
 }
 
-ActionMenu.prototype = {
+Class.ActionMenu.prototype = {
 
 	init : function(){
 		this.amGrp = this.game.add.group();

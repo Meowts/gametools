@@ -4,17 +4,23 @@ var Tools = {};
 //Data object for all static data
 var Data = {};
 
+//Class object to hold all of the game classes
+var Class = {};
+
 //Screen object to hold all of the screens
-var Screen = {
-	switchScreen : function(key){
-		Global.CS = key.screen;
-		Global.switchScreen = true;
-	}
-}
+var Screen = {};
+
+//State object to hold all of the states
+var State = {};
 
 //Misc helper functions (Global Functions)
 var GFN = {
 	
+	switchScreen : function(key){
+		Global.CS = key.screen;
+		Global.switchScreen = true;
+	},
+
 	//Return the count of items in an object
 	count : function(obj){
 		var total = 0;

@@ -29,7 +29,7 @@ Screen.CameraTest.prototype = {
 			Data.Common.back.x, 
 			Data.Common.back.y, 
 			Data.Common.back.sprite,
-			Screen.switchScreen,
+			GFN.switchScreen,
 			this, 
 			0, 0, 1
 		);

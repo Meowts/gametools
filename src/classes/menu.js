@@ -4,7 +4,7 @@
 *
 */
 
-var Menu = function(game){
+Class.Menu = function(game){
 	this.game = game;
 
 	this.selection = 'main';
@@ -21,7 +21,7 @@ var Menu = function(game){
 	this.MenuList = {};
 }
 
-Menu.prototype = {
+Class.Menu.prototype = {
 
 	exec : function(){
 		this.drawMenu();

@@ -4,7 +4,7 @@
 *
 */
 
-var Player = function(game){
+Class.Player = function(game){
 	this.game = game;
 
 	this.sprite = null;
@@ -19,7 +19,7 @@ var Player = function(game){
 	this.walkSpeed = 5;
 }
 
-Player.prototype = {
+Class.Player.prototype = {
 	init : function(x, y){
 		//Place sprite
 		this.sprite = this.game.add.sprite(x, y, Data.Player.spriteKey);

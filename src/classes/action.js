@@ -4,13 +4,13 @@
 *
 */
 
-var Action = function(game){
+Class.Action = function(game){
 	this.game = game;
 
 	this.currentAction = 'use';
 }
 
-Action.prototype = {
+Class.Action.prototype = {
 
 	use : function(entity){
 		if(entity.type === 'item'){
