@@ -68,5 +68,10 @@ Data.Screen.ActionTest = {
 			x : 600,
 			y : 300
 		}		
+	},
+
+	player : {
+		initX : 300,
+		initY : 300
 	}
 }

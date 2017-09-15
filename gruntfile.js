@@ -35,30 +35,6 @@ module.exports = function(grunt){
 		}
     });
 
-	// grunt.registerTask("compileGame", "Finds and prepares modules for concatenation.", function() {
-
-	//     // get all module directories
-	//     grunt.file.expand("src/*").forEach(function (dir) {
-
-	//         // get the module name from the directory name
-	//         var dirName = dir.substr(dir.lastIndexOf('/')+1);
-
-	//         // get the current concat object from initConfig
-	//         var concat = grunt.config.get('concat') || {};
-
-	//         // create a subtask for each module, find all src files
-	//         // and combine into a single js file per module
-	//         concat[dirName] = {
-	//             src: [dir + '/**/*.js'],
-	//             dest: 'compiled' + dirName + '.js'
-	//         };
-
-	//         // add module subtasks to the concat task in initConfig
-	//         grunt.config.set('concat', concat);
-	//     });
-	//     grunt.task.run('concat');
-	// });
-
 	// the default task
 	grunt.registerTask("default", ["concat", "watch"]);
 
